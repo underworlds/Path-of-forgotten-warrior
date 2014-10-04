@@ -22,7 +22,7 @@ public class MainCharacterMovement : MonoBehaviour {
 		float move = Input.GetAxis ("Horizontal");
 
 		rigidbody2D.velocity = new Vector2 (move * 5.0f , rigidbody2D.velocity.y);
-		 
+
 
 
 		if(Input.GetKeyDown(KeyCode.UpArrow)){
