@@ -19,8 +19,13 @@ public class CameraController : MonoBehaviour {
 		if (this.transform.position.y > -13) {
 						transform.position = character.transform.position + direction;
 		} else {
-			//wait for 2 seconds
-			transform.position = new Vector3(-11.3f, 3.9f,-10.0f);
+			print("Pres R to reload.");	
+
+			if(Input.GetKeyDown(KeyCode.R)){
+
+				transform.position = character.transform.position;
+			}
+
 		}
 	}
 }
