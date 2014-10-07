@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Hero{
+	
 	private int health;
 	private int points;
 	private bool isFacingRight;

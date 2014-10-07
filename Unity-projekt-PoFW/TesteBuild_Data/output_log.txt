@@ -1,0 +1,26 @@
+Initialize engine version: 4.5.4f1 (e036f44c54c9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 10.0]
+    Renderer: Mobile Intel(R) 4 Series Express Chipset Family (ID=0x2a42)
+    Vendor:   Intel
+    VRAM:     64 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\d\Desktop\vývoj hry\Path-of-forgotten-warrior\Unity-projekt-PoFW\TesteBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\d\Desktop\vývoj hry\Path-of-forgotten-warrior\Unity-projekt-PoFW\TesteBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\d\Desktop\vývoj hry\Path-of-forgotten-warrior\Unity-projekt-PoFW\TesteBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\d\Desktop\vývoj hry\Path-of-forgotten-warrior\Unity-projekt-PoFW\TesteBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.104 seconds
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+ENTER THE METHOD
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.603710 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 85.
+Total: 0.879901 ms (FindLiveObjects: 0.010265 ms CreateObjectMapping: 0.015153 ms MarkObjects: 0.084079 ms  DeleteObjects: 0.048883 ms)
+
