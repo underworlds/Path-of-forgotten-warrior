@@ -3,11 +3,18 @@ using System.Collections;
 
 public class CoinCollect : MonoBehaviour {
 
+
+	public GameManager gameManager;
+
+
 	void OnTriggerEnter2D(Collider2D obj){
-		if (obj.tag == "Character") {
-			print ("pridej minci");		
+		//print ("Collision detected");
+		if (obj.tag == "Coin") {
+			//print("Tag confirmed");
+			gameManager.addCoin(1);
+			Destroy (obj.gameObject);
 		}
-		Destroy (this.gameObject);
+
 	}
 
 	// Use this for initialization
@@ -19,4 +26,5 @@ public class CoinCollect : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }

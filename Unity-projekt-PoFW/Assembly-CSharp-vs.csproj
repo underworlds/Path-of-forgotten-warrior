@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\CoinCollect.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\HeroManager.cs" />
      <Compile Include="Assets\Scripts\MainCharacterMovement.cs" />
      <Compile Include="Assets\Scripts\RestartTrigger.cs" />

@@ -3,14 +3,17 @@ using System.Collections;
 
 public class RestartTrigger : MonoBehaviour {
 
+	public Transform character;
+
+	private Vector3 characterStartPosition;
+
 	void OnTriggerEnter2D(Collider2D obj){
-		print ("YOU FAIL...");
-		obj.transform.position = new Vector3 (-16.0f, 7.0f, 0.0f);
+		obj.transform.position = characterStartPosition;
 	}
 
 	// Use this for initialization
 	void Start () {
-	
+		characterStartPosition = character.transform.position;
 	}
 	
 	// Update is called once per frame
