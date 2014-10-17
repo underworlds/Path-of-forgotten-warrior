@@ -11,7 +11,7 @@ public class CoinCollect : MonoBehaviour {
 		//print ("Collision detected");
 		if (obj.tag == "Coin") {
 			//print("Tag confirmed");
-			gameManager.addCoin(1);
+			gameManager.AddCoin(1);
 			Destroy (obj.gameObject);
 		}
 

@@ -10,16 +10,18 @@ using System.Collections;
  * -
  */
 
+
 public class GameManager : MonoBehaviour {
 
 	public Transform camera;
 	public GUIText scoreSheetText;
 
 
-	private int heroLifeCounter = 3;
+	private int lifes = 3;
 	private int coins = 0;
 	private int points = 0;
-	private int heroHealth = 100;
+	private int hp = 100; //healthpoints
+
 	//private Rect rectangle; 
 	// Use this for initialization
 	void Start () {
@@ -28,21 +30,29 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		scoreSheetText.text = "Number of lifes: " + heroLifeCounter +
+		scoreSheetText.text = "Number of lifes: " + lifes +
 						"\nNumber of coins: " + coins +
 						"\nNumber of points: " + points +
-						"\nHealth: " + heroHealth +
+						"\nHealth: " + hp +
 				"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK";
 
 
 	}
 
 	
-	public void addCoin(int amount){
+	public void AddCoin(int amount){
 		coins++;	
 		
 	}
 
+	public int GetLifes(){
+		return lifes;
+	}
+
+	public void SetLifes(int amount){
+		this.lifes = amount;
+
+	}
 	/*
 	public void OnGUI(){
 		GUI.Label(Rect(0,0,Screen.width,Screen.height),("Number of lifes: " + heroLifeCounter +
