@@ -10,8 +10,7 @@ public class CoinCollect : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D obj){
 		//print ("Collision detected");
 		if (obj.tag == "Coin") {
-			//print("Tag confirmed");
-			gameManager.AddCoin(1);
+			gameManager.AddCoin();
 			Destroy (obj.gameObject);
 		}
 

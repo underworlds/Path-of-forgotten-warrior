@@ -14,52 +14,126 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public Transform camera;
-	public GUIText scoreSheetText;
+	//public GUIText scoreSheetText;
+	private GUIText scoreSheetText;
+	
+	
+	private	static int lifes;
+	private static int coins;
+	private int points;
+	private int hp; //healthpoints
+	
+	private int startCallCounter;
 
 
-	private int lifes = 3;
-	private int coins = 0;
-	private int points = 0;
-	private int hp = 100; //healthpoints
+	//SINGLETON CODE
+	private static GameManager _instance;
+	public static GameManager instance{
+		get{
+			if(_instance == null){
+				_instance = GameObject.FindObjectOfType<GameManager>();
 
-	//private Rect rectangle; 
-	// Use this for initialization
+				//Tell unity not to destroy this object when loading a new scene!
+				DontDestroyOnLoad(_instance.gameObject);
+
+			}
+
+			return _instance;
+		}
+
+	}
+
+
+
+	void Awake(){
+		if (_instance == null) {
+			//If I am first instance, make me the Singleton
+			_instance = this;
+			DontDestroyOnLoad (this);
+
+		} else {
+			//If a Singleton alreadz exists and zou find
+			//another reference in scene, destroy it!
+			if(this != _instance){
+				Destroy(this.gameObject);
+			}
+		}
+
+		//print ("Dostal jsem se k tomuto kodu...");
+		//scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
+	}
+
+	//END OF SINGLETONE CODE ....INSIPRED FROM: http://unitypatterns.com/singletons/
+
+
 	void Start () {
+		//InitialieRound ();
+		lifes = 3;
+		coins = 0;
+		points = 0;
+		hp = 100;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		scoreSheetText.text = "Number of lifes: " + lifes +
-						"\nNumber of coins: " + coins +
-						"\nNumber of points: " + points +
-						"\nHealth: " + hp +
-				"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK";
-
-
+		TextUpdate ();
 	}
 
 	
-	public void AddCoin(int amount){
-		coins++;	
-		
+	public void AddCoin(){
+		coins++;		
 	}
+
+
 
 	public int GetLifes(){
 		return lifes;
 	}
 
+	public void RemoveOneLife(){
+		lifes--;
+		
+	}
+
 	public void SetLifes(int amount){
-		this.lifes = amount;
+		lifes = amount;
 
 	}
+/*
+	public void InitializeRound(){
+				//lifes, coins, points, hps init
+				lifes = 3;
+				coins = 0;
+				points = 0;
+				hp = 100;
+	}
+*/
+	void TextUpdate(){
+		if(scoreSheetText != null){
+
+
+			scoreSheetText.text = "Number of lifes: " + lifes +
+				"\nNumber of coins: " + coins +
+					"\nNumber of points: " + points +
+					"\nHealth: " + hp +
+					"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK";
+
+		}else{
+			scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
+		}
+
+	}
+
+	
+	/////////////////////---------UNUSED CODE------------//////////////
 	/*
 	public void OnGUI(){
 		GUI.Label(Rect(0,0,Screen.width,Screen.height),("Number of lifes: " + heroLifeCounter +
 		          									   "\nNumber of coins: "+coins+
 		          									   "\n Number of points: " + points+
 		          									   "\n Health: "+ heroHealth));
-	}
-	*/
 
+
+	*/
 }
