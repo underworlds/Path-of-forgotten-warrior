@@ -15,14 +15,14 @@ public class CameraTriggerScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D obj){
 
-		if (this.tag == "CamTrig1down") {
-			camController.setLookTransformCons(-0.03f);
+		if (this.tag == "CamTrig1down") {//CAMERA DOWN
+			camController.setLookTransformCons(-1.0f);
 		}
-		if (this.tag == "CamTrig2zero") {
+		if (this.tag == "CamTrig2zero") {//CAMERA NORMAL
 			camController.setLookTransformCons(0.0f);
 		}
-		if (this.tag == "CamTrig3up") {
-			camController.setLookTransformCons(0.03f);
+		if (this.tag == "CamTrig3up") {//CAMERA UP
+			camController.setLookTransformCons(1.0f);
 		}
 
 	}
