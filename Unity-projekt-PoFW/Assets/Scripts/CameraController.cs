@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour {
 	public Transform character;
 	private float smoothRate = 0.5f;
 	private Vector2 velocity;
+	private float lookTransformConst = 0.0f;
 
 
 	// Use this for initialization
@@ -18,7 +19,7 @@ public class CameraController : MonoBehaviour {
 		//print ("Camera window size is X:"+camera.pixelWidth+" Y:"+camera.pixelHeight);
 		Vector2 newPos2D = Vector2.zero;
 		newPos2D.x = Mathf.SmoothDamp (this.transform.position.x, character.transform.position.x, ref velocity.x, smoothRate);
-		newPos2D.y = Mathf.SmoothDamp (this.transform.position.y, character.transform.position.y, ref velocity.y, smoothRate);
+		newPos2D.y = Mathf.SmoothDamp (this.transform.position.y + lookTransformConst, character.transform.position.y, ref velocity.y, smoothRate);
 
 
 		//UPDATES CAMERA TO OUR CHARACTERS LOCATION
@@ -26,7 +27,8 @@ public class CameraController : MonoBehaviour {
 		this.transform.position = Vector3.Slerp (transform.position, newPos, Time.time);
 	}
 
-	void LateUpdate () {
-
+	public void setLookTransformCons(float newLookTransformConst){
+		print("Const is goint to be " + newLookTransformConst); 
+		lookTransformConst = newLookTransformConst;
 	}
 }
