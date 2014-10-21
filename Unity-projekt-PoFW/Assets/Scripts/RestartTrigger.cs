@@ -17,7 +17,9 @@ public class RestartTrigger : MonoBehaviour {
 
 		if (lifesOfCharacter > 1) {//hero had 2 or 3 lifes left
 
+			//Reaction of GameManager
 			gameManager.RemoveOneLife();
+			gameManager.ResetCollectedValues();
 
 			//Restart LEVEL
 			Application.LoadLevel(Application.loadedLevel);

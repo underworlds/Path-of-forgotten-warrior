@@ -14,17 +14,33 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public Transform camera;
-	//public GUIText scoreSheetText;
 	private GUIText scoreSheetText;
 	
-	
+	//CHARACTERS VALUES
 	private	static int lifes;
 	private static int coins;
-	private int points;
-	private int hp; //healthpoints
-	
-	private int startCallCounter;
+	private static int points;
+	private static int hp; //healthpoints
 
+	//CHECKPOINTS VALUES 
+	private static int cpCoins;
+	private static int cpPoints;
+	//private static int cpCoins; ...will be implemented
+
+
+	// CONSTANT VALUES ...WILL BE ALLWAYS UPPERCASE
+	private const int STARTING_NUMBER_OF_LIFES = 3;
+	private const int STARTING_NUMBER_OF_COINS = 0;
+	private const int STARTING_NUMBER_OF_POINTS = 0;
+	private const int STARTING_NUMBER_OF_HP = 100;
+
+	private const int POINTS_PER_COIN = 50;
+	private const int POINTS_PER_STD_ENEMY = 20; //should be multiplied by level numer (eg 20 x 1...(level 1))
+
+	//strings to adding points
+	private const string COIN_STR = "coin";
+	private const string STANDART_ENEMY_STR = "enemy";
+	//...
 
 	//SINGLETON CODE
 	private static GameManager _instance;
@@ -67,12 +83,13 @@ public class GameManager : MonoBehaviour {
 
 
 	void Start () {
-		//InitialieRound ();
-		lifes = 3;
-		coins = 0;
-		points = 0;
-		hp = 100;
+		lifes = STARTING_NUMBER_OF_LIFES;
+		coins = STARTING_NUMBER_OF_COINS;
+		points = STARTING_NUMBER_OF_POINTS;
+		hp = STARTING_NUMBER_OF_HP;
 
+		cpCoins = STARTING_NUMBER_OF_COINS;
+		cpPoints = STARTING_NUMBER_OF_POINTS;
 	}
 	
 	// Update is called once per frame
@@ -83,8 +100,17 @@ public class GameManager : MonoBehaviour {
 	
 	public void AddCoin(){
 		coins++;		
+		AddPoints (COIN_STR);
 	}
 
+	private void AddPoints(string type){
+		if(type == COIN_STR){
+			points += POINTS_PER_COIN;
+		}
+		if(type == STANDART_ENEMY_STR){
+			points += POINTS_PER_STD_ENEMY; //SHOULD BE 20xLEVEL_NUMBER ... 
+		}
+	}
 
 
 	public int GetLifes(){
@@ -94,6 +120,11 @@ public class GameManager : MonoBehaviour {
 	public void RemoveOneLife(){
 		lifes--;
 		
+	}
+
+	public void ResetCollectedValues(){
+		coins = cpCoins;
+		points = cpPoints;
 	}
 
 
