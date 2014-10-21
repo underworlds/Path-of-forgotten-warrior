@@ -1,10 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RestartTrigger.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="111" Column="34" />
-      <File FileName="Assets\Scripts\MainCharacterMovement.cs" Line="15" Column="29" />
-      <File FileName="Assets\Scripts\RestartTrigger.cs" Line="30" Column="4" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="21" Column="120" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="127" Column="14" />
+      <File FileName="Assets\Scripts\MainCharacterMovement.cs" Line="32" Column="32" />
+      <File FileName="Assets\Scripts\RestartTrigger.cs" Line="14" Column="3" />
+      <File FileName="Assets\Demo\EnemyBehaviour.cs" Line="48" Column="14" />
+      <File FileName="Assets\Demo\GroundControl.cs" Line="21" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
