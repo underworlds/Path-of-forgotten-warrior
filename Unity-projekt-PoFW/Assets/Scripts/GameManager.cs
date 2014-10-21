@@ -96,19 +96,7 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	public void SetLifes(int amount){
-		lifes = amount;
 
-	}
-/*
-	public void InitializeRound(){
-				//lifes, coins, points, hps init
-				lifes = 3;
-				coins = 0;
-				points = 0;
-				hp = 100;
-	}
-*/
 	void TextUpdate(){
 		if(scoreSheetText != null){
 
@@ -127,6 +115,18 @@ public class GameManager : MonoBehaviour {
 
 	
 	/////////////////////---------UNUSED CODE------------//////////////
+	/// 
+	/// 
+
+	/*
+	public void InitializeRound(){
+		//lifes, coins, points, hps init
+		lifes = 3;
+		coins = 0;
+		points = 0;
+		hp = 100;
+	}
+	*/
 	/*
 	public void OnGUI(){
 		GUI.Label(Rect(0,0,Screen.width,Screen.height),("Number of lifes: " + heroLifeCounter +

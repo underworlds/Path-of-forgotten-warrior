@@ -9,10 +9,10 @@ public class MainCharacterMovement : MonoBehaviour {
 
 
 	//Rychlost pohybu
-	public float speed =  1.0f;
+	public float speed =  0.5f;
 
 	//vyska skoku
-	private int jumpHeight = 280;
+	private int jumpHeight = 100;
 
 	//komponenta pro detekci, zda se nachazim na zemi
 	public Transform groundCheck;
@@ -39,7 +39,8 @@ public class MainCharacterMovement : MonoBehaviour {
 
 		//left movement
 		if(Input.GetKey(KeyCode.LeftArrow) ){
-			transform.position -= Vector3.right * speed * Time.deltaTime;
+			//transform.position -= Vector3.right * speed * Time.deltaTime;
+			this.rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
 
 			//flipping the character
 			if(isFacingRight){
@@ -49,7 +50,8 @@ public class MainCharacterMovement : MonoBehaviour {
 
 		//right movement
 		if(Input.GetKey(KeyCode.RightArrow) ){
-			transform.position += Vector3.right * speed * Time.deltaTime;
+			//transform.position += Vector3.right * speed * Time.deltaTime;
+			this.rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
 
 			if(!isFacingRight){
 				this.Flip();
