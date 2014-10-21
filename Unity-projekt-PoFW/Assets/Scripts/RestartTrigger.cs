@@ -4,8 +4,8 @@ using System.Collections;
 
 public class RestartTrigger : MonoBehaviour {
 
-	public Transform character;
-	public GameManager gameManager;
+	private Transform character;
+	private GameManager gameManager;
 
 	private Vector3 characterStartPosition;
 
@@ -36,7 +36,19 @@ public class RestartTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+		if (gameManager== null) {
+			print ("Didnt find gameManager ...well fuck");		
+		}
+
+		character =  GameObject.FindGameObjectWithTag("Character").transform;
+		if (character == null) {
+			print ("Didnt find character ...well fuck");		
+		} 
+
 		characterStartPosition = character.transform.position;
+
 	}
 	
 	// Update is called once per frame

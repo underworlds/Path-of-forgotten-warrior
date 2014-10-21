@@ -13,7 +13,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public Transform camera;
+	private Transform camera;
 	private GUIText scoreSheetText;
 	
 	//CHARACTERS VALUES
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
 
 
 	void Awake(){
+
 		if (_instance == null) {
 			//If I am first instance, make me the Singleton
 			_instance = this;
@@ -75,8 +76,11 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		//print ("Dostal jsem se k tomuto kodu...");
-		//scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
+		//Finding camera
+		camera = GameObject.FindObjectOfType<Camera>().transform;
+		if (camera == null) {
+			print ("Didnt find Camera ...well fuck");		
+		}
 	}
 
 	//END OF SINGLETONE CODE ....INSIPRED FROM: http://unitypatterns.com/singletons/

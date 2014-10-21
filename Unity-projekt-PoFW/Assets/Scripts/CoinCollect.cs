@@ -4,7 +4,7 @@ using System.Collections;
 public class CoinCollect : MonoBehaviour {
 
 
-	public GameManager gameManager;
+	private GameManager gameManager;
 
 
 	void OnTriggerEnter2D(Collider2D obj){
@@ -18,7 +18,10 @@ public class CoinCollect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+		if (gameManager== null) {
+			print ("Didnt find gameManager ...well fuck");		
+		}
 	}
 	
 	// Update is called once per frame

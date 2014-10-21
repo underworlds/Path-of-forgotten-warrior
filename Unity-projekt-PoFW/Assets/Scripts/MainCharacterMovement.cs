@@ -9,7 +9,7 @@ public class MainCharacterMovement : MonoBehaviour {
 
 
 	//Rychlost pohybu
-	public float speed =  0.5f;
+	private float speed =  2.0f;
 
 	//vyska skoku
 	private int jumpHeight = 100;
@@ -59,8 +59,6 @@ public class MainCharacterMovement : MonoBehaviour {
 		}
 
 
-
-
 		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround));
 		//jump movement
 		if(Input.GetKey(KeyCode.UpArrow) && isGrounded){
@@ -68,11 +66,6 @@ public class MainCharacterMovement : MonoBehaviour {
 			rigidbody2D.AddForce(new Vector3(0,jumpHeight,0));	
 		}
 
-
-	}
-
-
-	void FixedUpdate(){
 
 	}
 	

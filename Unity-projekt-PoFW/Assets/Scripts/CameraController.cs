@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 
-	public Transform character;
+	private Transform character;
 	private float smoothRate = 0.5f;
 	private Vector2 velocity;
 	private float lookTransformConst = 0.0f;
@@ -12,6 +12,12 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		character =  GameObject.FindGameObjectWithTag("Character").transform;
+		if (character == null) {
+			print ("Didnt find character ...well fuck");		
+		} 
+
 		velocity = new Vector2(0.5f,0.5f);
 	}
 
