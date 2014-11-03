@@ -106,14 +106,23 @@ public class EnemyBehaviour : MonoBehaviour {
     //metoda na urcenie pozicie hrdinu
     public void setHeroPosition(Vector2 position)
     {
+        if (IsHeroOnDesk)
+        {
+            Debug.Log("je na doske");
+        }
+        else
+        {
+            Debug.Log("nieje na doske");
+        }
+        
         this.position = position;
     }
     //metoda na detekovanie hrdinu - moze nan zautocit
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Equals("hrdina"))
+        if (collision.gameObject.tag.Equals("Character"))
         {
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
 
     }
