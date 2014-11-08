@@ -9,16 +9,18 @@ public class MainCharacterMovement : MonoBehaviour {
 
 
 	//Rychlost pohybu
-	private float speed =  2.0f;
+	private float speed = 0.1f;
+	private const float SPEED = 2.0f;
 
-	//vyska skoku
-	private int jumpHeight = 100;
+	//vyska skoku ...dal bych asi mene, neco kolem 75
+	private const int JUMP_HEIGHT = 100;
 
 	//komponenta pro detekci, zda se nachazim na zemi
 	public Transform groundCheck;
 
 	// radius kruhu ktery provede detekci
-	float groundRadius = 0.1f;
+	private const float GROUND_RADIUS = 0.1f;
+
 
 	// maska urcujici co je zem
 	public LayerMask whatIsGround;
@@ -38,20 +40,25 @@ public class MainCharacterMovement : MonoBehaviour {
 	void Update () {
 
 		//left movement
-		if(Input.GetKey(KeyCode.LeftArrow) ){
-			//transform.position -= Vector3.right * speed * Time.deltaTime;
-			this.rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
+		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+			print ("Key is pressed");
+			speed += 0.1f;
+						//transform.position -= Vector3.right * speed * Time.deltaTime;
+						this.rigidbody2D.velocity = new Vector2 (-SPEED, rigidbody2D.velocity.y);
 
-			//flipping the character
-			if(isFacingRight){
-				this.Flip();
-			}
+						//flipping the character
+						if (isFacingRight) {
+								this.Flip ();
+						}
+		} if(Input.GetKeyUp(KeyCode.LeftArrow)) {
+			print ("You Release the key");
+			speed = 0.1f;
 		}
 
 		//right movement
 		if(Input.GetKey(KeyCode.RightArrow) ){
 			//transform.position += Vector3.right * speed * Time.deltaTime;
-			this.rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
+			this.rigidbody2D.velocity = new Vector2(SPEED, rigidbody2D.velocity.y);
 
 			if(!isFacingRight){
 				this.Flip();
@@ -59,11 +66,11 @@ public class MainCharacterMovement : MonoBehaviour {
 		}
 
 
-		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround));
+		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, GROUND_RADIUS, whatIsGround));
 		//jump movement
 		if(Input.GetKey(KeyCode.UpArrow) && isGrounded){
 
-			rigidbody2D.AddForce(new Vector3(0,jumpHeight,0));	
+			rigidbody2D.AddForce(new Vector3(0,JUMP_HEIGHT,0));	
 		}
 
 
