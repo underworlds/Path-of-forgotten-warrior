@@ -12,7 +12,7 @@ public class MainCharacterMovement : MonoBehaviour {
 	private float maxSpeed = 2.5f;
 	
 	//vyska skoku ...dal bych asi mene, neco kolem 75
-	private int jumpHeight = 100;
+	private int jumpHeight = 250;
 	
 	//komponenta pro detekci, zda se nachazim na zemi
 	public Transform groundCheck;
@@ -44,16 +44,20 @@ public class MainCharacterMovement : MonoBehaviour {
 
 	void Update(){
 
-		if(Input.GetKey(KeyCode.UpArrow) && isGrounded) ;
-		{
+		if(Input.GetKeyDown(KeyCode.UpArrow) && isGrounded){	
 			print("going to add force");
-			anim.SetBool("Ground",false);
-			//rigidbody2D.AddForce(new Vector2(0,jumpHeight));
+			isGrounded = false;
+			print("in update" + isGrounded);
+			anim.SetBool("Ground",isGrounded);
+			print("should be false " + isGrounded);
+			rigidbody2D.AddForce(new Vector2(0,jumpHeight));
 		}
 	}
 
 
 	void FixedUpdate(){
+		print("in fixed update is entering like" + isGrounded);
+		print("but the fuckin code returns... " + Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround));
 		float move = Input.GetAxis ("Horizontal"); // musi se jeste prenastavit axis
 
 		anim.SetFloat ("Speed", Mathf.Abs (move));
@@ -67,8 +71,12 @@ public class MainCharacterMovement : MonoBehaviour {
 			Flip ();
 		}
 
-		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, graundRadius, whatIsGround));
+		isGrounded = Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround);
+		print("in fixed update after the fuckin code" + isGrounded);
 		anim.SetBool("Ground",isGrounded);
+
+
+		//print("vertical speed is " + (rigidbody2D.velocity.y));
 		anim.SetFloat("vSpeed",rigidbody2D.velocity.y);
 
 		//jump movement
