@@ -3,90 +3,95 @@ using System.Collections;
 
 
 public class MainCharacterMovement : MonoBehaviour {
-
+	
 	//Kuba:
 	/*Jak jsme se dohodli pohyb bude na šipkách, skok šipkou nahoru*/
-
-
+	
+	
 	//Rychlost pohybu
-	private float speed = 0.1f;
-	private const float SPEED = 2.0f;
-
+	private float maxSpeed = 2.5f;
+	
 	//vyska skoku ...dal bych asi mene, neco kolem 75
-	private const int JUMP_HEIGHT = 100;
-
+	private int jumpHeight = 100;
+	
 	//komponenta pro detekci, zda se nachazim na zemi
 	public Transform groundCheck;
-
+	
 	// radius kruhu ktery provede detekci
-	private const float GROUND_RADIUS = 0.1f;
-
-
+	private const float graundRadius = 0.1f;
+	
+	
 	// maska urcujici co je zem
 	public LayerMask whatIsGround;
-
+	
 	// promenna pro zjisteni zda je hrdina na zemi, 
 	bool isGrounded = false; //melo by byt implicitne false
-
+	
 	//promenna pro hlidani jestli postava hledi doprava, nebo je otocena
-	bool isFacingRight = true;
+	public bool isFacingRight = true;
+	
+	//Animator
+	Animator anim;
+
 
 	// Use this for initialization
 	void Start () {
-
+		anim = GetComponent<Animator>();
+		if(anim == null){
+			print("There is no animator");
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		//left movement
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			print ("Key is pressed");
-			speed += 0.1f;
-						//transform.position -= Vector3.right * speed * Time.deltaTime;
-						this.rigidbody2D.velocity = new Vector2 (-SPEED, rigidbody2D.velocity.y);
+	void Update(){
 
-						//flipping the character
-						if (isFacingRight) {
-								this.Flip ();
-						}
-		} if(Input.GetKeyUp(KeyCode.LeftArrow)) {
-			print ("You Release the key");
-			speed = 0.1f;
+		if(Input.GetKey(KeyCode.UpArrow) && isGrounded) ;
+		{
+			print("going to add force");
+			anim.SetBool("Ground",false);
+			//rigidbody2D.AddForce(new Vector2(0,jumpHeight));
+		}
+	}
+
+
+	void FixedUpdate(){
+		float move = Input.GetAxis ("Horizontal"); // musi se jeste prenastavit axis
+
+		anim.SetFloat ("Speed", Mathf.Abs (move));
+			
+		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+			
+			
+		if(move > 0 && !isFacingRight){
+			Flip();
+		}else if(move < 0 && isFacingRight) {
+			Flip ();
 		}
 
-		//right movement
-		if(Input.GetKey(KeyCode.RightArrow) ){
-			//transform.position += Vector3.right * speed * Time.deltaTime;
-			this.rigidbody2D.velocity = new Vector2(SPEED, rigidbody2D.velocity.y);
+		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, graundRadius, whatIsGround));
+		anim.SetBool("Ground",isGrounded);
+		anim.SetFloat("vSpeed",rigidbody2D.velocity.y);
 
-			if(!isFacingRight){
-				this.Flip();
-			}
-		}
-
-
-		isGrounded = (Physics2D.OverlapCircle (groundCheck.position, GROUND_RADIUS, whatIsGround));
 		//jump movement
-		if(Input.GetKey(KeyCode.UpArrow) && isGrounded){
 
-			rigidbody2D.AddForce(new Vector3(0,JUMP_HEIGHT,0));	
-		}
-
-
+		/*if(Input.GetKey(KeyCode.UpArrow) && isGrounded){
+			rigidbody2D.AddForce(new Vector3(0,jumpHeight,0));	
+		}*/
 	}
-	
+
+
 	/**
 	 * Metoda z jednoho tutorialu, mela by otocit postavu tak aby koukala doleva...
 	 * Muze byt odstraneno pokud chceme aby postava jen couvala a neotacela se :) 
 	 * 
 	 **/
-
+	
 	void Flip(){ //fliping the world
 		isFacingRight = (!isFacingRight);
 		Vector3 theScale = transform.localScale; //let me get local scale
 		theScale.x *= -1;						// flip x axis	
 		transform.localScale = theScale;		//get it back to local scale 
 	}
-
+	
+	
+	
 }

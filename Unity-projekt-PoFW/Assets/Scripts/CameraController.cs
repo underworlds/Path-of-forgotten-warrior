@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
@@ -12,17 +12,14 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 		character =  GameObject.FindGameObjectWithTag("Character").transform;
 		if (character == null) {
-			print ("Didnt find character ...well fuck");		
-		} 
-
+						print ("Didnt find character ...well fuck");		
+				}
 		velocity = new Vector2(0.5f,0.5f);
 	}
 
 	void Update(){
-		//print ("Camera window size is X:"+camera.pixelWidth+" Y:"+camera.pixelHeight);
 		Vector2 newPos2D = Vector2.zero;
 		newPos2D.x = Mathf.SmoothDamp (this.transform.position.x, character.transform.position.x, ref velocity.x, smoothRate);
 		newPos2D.y = Mathf.SmoothDamp (this.transform.position.y, character.transform.position.y + lookTransformConst , ref velocity.y, smoothRate);

@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	//END OF SINGLETONE CODE ....INSIPRED FROM: http://unitypatterns.com/singletons/
+	//END OF SINGLETONE CODE ....INSPIRED FROM: http://unitypatterns.com/singletons/
 
 
 	void Start () {
