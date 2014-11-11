@@ -61,150 +61,150 @@ TextureImporter:
     - name: Idle_0
       rect:
         serializedVersion: 2
-        x: 180
-        y: 2430
-        width: 200
-        height: 560
+        x: 0
+        y: 2400
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_1
       rect:
         serializedVersion: 2
-        x: 780
-        y: 2430
-        width: 200
-        height: 560
+        x: 600
+        y: 2400
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_2
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 2430
-        width: 200
-        height: 560
+        x: 1200
+        y: 2400
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_3
       rect:
         serializedVersion: 2
-        x: 180
-        y: 1830
-        width: 200
-        height: 560
+        x: 0
+        y: 1800
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_4
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1830
-        width: 200
-        height: 560
+        x: 600
+        y: 1800
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_5
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 1830
-        width: 200
-        height: 560
+        x: 1200
+        y: 1800
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_6
       rect:
         serializedVersion: 2
-        x: 180
-        y: 1230
-        width: 200
-        height: 560
+        x: 0
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_7
       rect:
         serializedVersion: 2
-        x: 780
-        y: 1230
-        width: 200
-        height: 560
+        x: 600
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_8
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 1230
-        width: 200
-        height: 560
+        x: 1200
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_9
       rect:
         serializedVersion: 2
-        x: 180
-        y: 630
-        width: 200
-        height: 560
+        x: 0
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_10
       rect:
         serializedVersion: 2
-        x: 780
-        y: 630
-        width: 200
-        height: 560
+        x: 600
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_11
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 630
-        width: 200
-        height: 560
+        x: 1200
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_12
       rect:
         serializedVersion: 2
-        x: 180
-        y: 30
-        width: 200
-        height: 560
+        x: 0
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_13
       rect:
         serializedVersion: 2
-        x: 780
-        y: 30
-        width: 200
-        height: 560
+        x: 600
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Idle_14
       rect:
         serializedVersion: 2
-        x: 1380
-        y: 30
-        width: 200
-        height: 560
+        x: 1200
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

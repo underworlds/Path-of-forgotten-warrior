@@ -54,82 +54,82 @@ TextureImporter:
     - name: Jump_0
       rect:
         serializedVersion: 2
-        x: 91
-        y: 1289
-        width: 431
-        height: 451
+        x: 0
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_1
       rect:
         serializedVersion: 2
-        x: 634
-        y: 1297
-        width: 542
-        height: 388
+        x: 600
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_2
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 1274
-        width: 497
-        height: 459
+        x: 1200
+        y: 1200
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_3
       rect:
         serializedVersion: 2
-        x: 126
-        y: 663
-        width: 445
-        height: 472
+        x: 0
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_4
       rect:
         serializedVersion: 2
-        x: 637
-        y: 678
-        width: 510
-        height: 466
+        x: 600
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_5
       rect:
         serializedVersion: 2
-        x: 1196
-        y: 676
-        width: 528
-        height: 470
+        x: 1200
+        y: 600
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_6
       rect:
         serializedVersion: 2
-        x: 6
-        y: 71
-        width: 546
-        height: 428
+        x: 0
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Jump_7
       rect:
         serializedVersion: 2
-        x: 651
-        y: 77
-        width: 452
-        height: 480
+        x: 600
+        y: 0
+        width: 600
+        height: 600
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
