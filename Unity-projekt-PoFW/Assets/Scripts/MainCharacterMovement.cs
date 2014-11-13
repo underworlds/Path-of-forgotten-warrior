@@ -31,7 +31,7 @@ public class MainCharacterMovement : MonoBehaviour {
 	public bool isFacingRight = true;
 	
 	//Animator
-	Animator anim;
+	private Animator anim;
 
 
 	// Use this for initialization
@@ -45,19 +45,15 @@ public class MainCharacterMovement : MonoBehaviour {
 	void Update(){
 
 		if(Input.GetKeyDown(KeyCode.UpArrow) && isGrounded){	
-			print("going to add force");
 			isGrounded = false;
-			print("in update" + isGrounded);
 			anim.SetBool("Ground",isGrounded);
-			print("should be false " + isGrounded);
 			rigidbody2D.AddForce(new Vector2(0,jumpHeight));
 		}
 	}
 
 
 	void FixedUpdate(){
-		print("in fixed update is entering like" + isGrounded);
-		print("but the fuckin code returns... " + Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround));
+
 		float move = Input.GetAxis ("Horizontal"); // musi se jeste prenastavit axis
 
 		anim.SetFloat ("Speed", Mathf.Abs (move));
@@ -72,7 +68,7 @@ public class MainCharacterMovement : MonoBehaviour {
 		}
 
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround);
-		print("in fixed update after the fuckin code" + isGrounded);
+		//print("in fixed update after the fuckin code" + isGrounded);
 		anim.SetBool("Ground",isGrounded);
 
 
