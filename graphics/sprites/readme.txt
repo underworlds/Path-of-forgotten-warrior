@@ -1,1 +1,1 @@
-sprites
+sprites contains game objects, characters, animations and other objects
