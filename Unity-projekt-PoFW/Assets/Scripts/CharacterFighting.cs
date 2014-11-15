@@ -21,10 +21,28 @@ public class CharacterFighting : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		//SHIELD COVER
 		if(Input.GetKey(KeyCode.S) && (Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.001f )){
 			anim.SetBool("shieldCover",true);
+			//here should be implementation of shielded state of character
 		}else{
 			anim.SetBool("shieldCover",false);
 		}
+
+
+		//
+		if(Input.GetKeyDown(KeyCode.A)){	
+			anim.SetBool ("slash",true);
+			//here shloud be impmentation of characters attack
+		}
+
+
+		if(Input.GetKeyUp(KeyCode.A)){
+			anim.SetBool ("slash",false);
+
+		}/*else{
+			anim.SetBool ("slash",false);
+		}*/
 	}
 }
