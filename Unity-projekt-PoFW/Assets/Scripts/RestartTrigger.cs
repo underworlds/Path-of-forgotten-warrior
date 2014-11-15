@@ -6,6 +6,7 @@ public class RestartTrigger : MonoBehaviour {
 
 	private Transform character;
 	private GameManager gameManager;
+	private Animator anim;
 
 	private Vector3 characterStartPosition;
 
@@ -47,17 +48,28 @@ public class RestartTrigger : MonoBehaviour {
 		}
 		else
 		{//hero had only 1 life left 
-			//...he dies :( 
-			//return hero to first round of this level
-			//...should be returned to GAME OVER scene and then to MAIN MENU scene
-
-			gameManager.TotalReset();
-			Application.LoadLevel("Lvl1-round1");
-			
+			StartCoroutine(Die());
 		}
 	}
 
-	// Use this for initialization
+	//here the waitforseconds is exactly the length of animaton
+	//if you move with animation sample you have to change this
+
+	private IEnumerator Die(){
+		anim.SetBool("die",true);
+		yield return new WaitForSeconds(1.273f);
+		Destroy(character.gameObject);
+		gameManager.TotalReset();
+
+		//...should be returned to GAME OVER scene and then to MAIN MENU scene
+		Application.LoadLevel("Lvl1-round1");
+	} 	
+
+
+
+
+//-------------------INITIALIZATION CODE-----------------
+
 	void Start () {
 
 		gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -68,6 +80,11 @@ public class RestartTrigger : MonoBehaviour {
 		character =  GameObject.FindGameObjectWithTag("Character").transform;
 		if (character == null) {
 			print ("Didnt find character ...well fuck");		
+		} 
+
+		anim =  GameObject.FindGameObjectWithTag("Character").GetComponent<Animator>();
+		if (character == null) {
+			print ("Didnt find animator ...well fuck");		
 		} 
 		characterStartPosition = character.transform.position;
 	}

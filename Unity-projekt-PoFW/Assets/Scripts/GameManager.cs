@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 
 
 	// CONSTANT VALUES ...WILL BE ALLWAYS UPPERCASE
-	private const int STARTING_NUMBER_OF_LIFES = 3;
+	private const int STARTING_NUMBER_OF_LIFES = 1;
 	private const int STARTING_NUMBER_OF_COINS = 0;
 	private const int STARTING_NUMBER_OF_POINTS = 0;
 	private const int STARTING_NUMBER_OF_HP = 100;

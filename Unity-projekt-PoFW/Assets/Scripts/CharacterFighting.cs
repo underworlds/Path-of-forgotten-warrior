@@ -31,18 +31,25 @@ public class CharacterFighting : MonoBehaviour {
 		}
 
 
-		//
+		//SLASH
 		if(Input.GetKeyDown(KeyCode.A)){	
 			anim.SetBool ("slash",true);
 			//here shloud be impmentation of characters attack
 		}
-
-
 		if(Input.GetKeyUp(KeyCode.A)){
 			anim.SetBool ("slash",false);
 
-		}/*else{
-			anim.SetBool ("slash",false);
-		}*/
+		}
+
+		//THROW
+		if(Input.GetKeyDown(KeyCode.D)){	
+			anim.SetBool ("throw",true);
+			//here shloud be impmentation of characters attack
+		}
+		if(Input.GetKeyUp(KeyCode.D)){
+			anim.SetBool ("throw",false);
+
+		}
 	}
+
 }
