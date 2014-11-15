@@ -25,7 +25,7 @@ public class MainCharacterMovement : MonoBehaviour {
 	public LayerMask whatIsGround;
 	
 	// promenna pro zjisteni zda je hrdina na zemi, 
-	bool isGrounded = false; //melo by byt implicitne false
+	public bool isGrounded = false; //melo by byt implicitne false
 	
 	//promenna pro hlidani jestli postava hledi doprava, nebo je otocena
 	public bool isFacingRight = true;
@@ -54,7 +54,7 @@ public class MainCharacterMovement : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		float move = Input.GetAxis ("Horizontal"); // musi se jeste prenastavit axis
+		float move = Input.GetAxis ("Horizontal");
 
 		anim.SetFloat ("Speed", Mathf.Abs (move));
 			
@@ -67,19 +67,11 @@ public class MainCharacterMovement : MonoBehaviour {
 			Flip ();
 		}
 
+		//jumping stuff and setting to animations
 		isGrounded = Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround);
-		//print("in fixed update after the fuckin code" + isGrounded);
 		anim.SetBool("Ground",isGrounded);
-
-
-		//print("vertical speed is " + (rigidbody2D.velocity.y));
 		anim.SetFloat("vSpeed",rigidbody2D.velocity.y);
 
-		//jump movement
-
-		/*if(Input.GetKey(KeyCode.UpArrow) && isGrounded){
-			rigidbody2D.AddForce(new Vector3(0,jumpHeight,0));	
-		}*/
 	}
 
 
