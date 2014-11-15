@@ -140,7 +140,8 @@ public class GameManager : MonoBehaviour {
 				"\nNumber of coins: " + coins +
 					"\nNumber of points: " + points +
 					"\nHealth: " + hp +
-					"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK";
+					"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK"+
+					"\nCP values: [points / coins] " + cpPoints +  " / " +cpCoins;
 
 		}else{
 			scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
@@ -148,7 +149,23 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	
+	/**
+	 * This method will be used, when player hit the change scene trigger.
+	 * Current values of points coins will be stored to cpPoints, cpCoins values;
+	 * So every time from now, when player lost his life, he will respawn with this checkpoint values.
+	 */
+	public void Checkpoint(){
+		cpCoins = coins;
+		cpPoints = points;
+	} 
+
+	/**
+	 * This method will be used, when player dies. (Lost his 3 lifes).
+	 * All atributes will be setted to init values.	
+	 */
+	public void TotalReset(){
+		this.Start ();
+	}
 	/////////////////////---------UNUSED CODE------------//////////////
 	/// 
 	/// 

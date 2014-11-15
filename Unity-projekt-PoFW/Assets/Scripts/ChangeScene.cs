@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class ChangeScene : MonoBehaviour {
+	private GameManager gameManager;
 
 	//LEVEL 1
 	private const string LVL_01_RND_01 = "Lvl1-round1";
@@ -11,7 +12,10 @@ public class ChangeScene : MonoBehaviour {
 	//LEVEL 2
 
 	void Start(){
-
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+		if (gameManager== null) {
+			print ("Didnt find gameManager ...well fuck");		
+		}
 	}
 
 	void OnTriggerEnter2D(){
@@ -27,15 +31,19 @@ public class ChangeScene : MonoBehaviour {
 
 		//------------LEVEL 1-----------------
 		case LVL_01_RND_01:
+			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_01_RND_02);
 			break;
 		case LVL_01_RND_02:
+			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_01_RND_03);
 			break;
 		case LVL_01_RND_03:
+			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_01_RND_04);
 			break;
 		case LVL_01_RND_04:
+			gameManager.Checkpoint();
 			//bude dodelano...
 			break;
 		}
