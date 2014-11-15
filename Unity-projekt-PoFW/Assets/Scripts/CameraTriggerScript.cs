@@ -24,6 +24,10 @@ public class CameraTriggerScript : MonoBehaviour {
 		if (this.tag == "CamTrig3up") {//CAMERA UP
 			camController.setLookTransformCons(1.0f);
 		}
+		if (this.tag == "CamTrig4down2x") {//CAMERA UP
+			camController.setLookTransformCons(-1.5f);
+
+		}
 
 	}
 }
