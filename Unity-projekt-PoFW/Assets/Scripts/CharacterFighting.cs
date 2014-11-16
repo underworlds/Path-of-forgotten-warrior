@@ -16,7 +16,7 @@ public class CharacterFighting : MonoBehaviour {
 	public LayerMask whatToHit;
 	public Transform spearPrefab;
 	private MainCharacterMovement mcm;
-
+	public bool isShieldDown = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,9 +43,11 @@ public class CharacterFighting : MonoBehaviour {
 
 		//SHIELD COVER
 		if(Input.GetKey(KeyCode.S) && (Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.001f )){
+			isShieldDown = true;
 			anim.SetBool("shieldCover",true);
 			//here should be implementation of shielded state of character
 		}else{
+			isShieldDown = false;
 			anim.SetBool("shieldCover",false);
 		}
 
@@ -96,4 +98,7 @@ public class CharacterFighting : MonoBehaviour {
 		//spawning of spear
 		Instantiate(spearPrefab, firePoint.position, firePoint.rotation);		
 	}
+
+
+
 }
