@@ -30,6 +30,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	private CharacterFighting charFight;
 	private float timeToNextAttack;
 	private const float UNDEAD_ATTACK_TIME = 3.0f;
+	private bool enemyIsKilled = false;
 
 	//Animation fields
 	Animator anim;
@@ -64,7 +65,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Update(){
         //je hrdina na doske - aktivacia nepriatelov
-        if (IsHeroOnDesk){
+        if (IsHeroOnDesk && !enemyIsKilled){
             
             //kontrola ci nepriatel sa neotocil
             int check = 0;
@@ -150,12 +151,23 @@ public class EnemyBehaviour : MonoBehaviour {
 				gameManager.CharacterReceiveHitFromUndead();
 			}
 
-
 		}else{
 
 		}
 	}
 
+	public void Killed(){
+		enemyIsKilled = true;
+		character.GetComponent<Animator>().SetBool("hit", false);
+		anim.SetBool("die",true);
+		StartCoroutine(UndeadDie());
+
+	}
+
+	private IEnumerator UndeadDie(){
+		yield return new WaitForSeconds(1.200f);
+		Destroy(this.gameObject);
+	}
 
     //sposob vypoctu rychlosti nepriatela
     private float IncrementTowards(float n, float target, float a)
@@ -192,7 +204,9 @@ public class EnemyBehaviour : MonoBehaviour {
             Debug.Log("nieje na doske");
         }
         
-        this.position = position;
+		if(!enemyIsKilled){
+        	this.position = position;
+		}
     }
 
 

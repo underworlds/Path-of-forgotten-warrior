@@ -13,6 +13,7 @@ public class CharacterFighting : MonoBehaviour {
 	//THROWING SPEAR FIELDS
 	private Transform firePoint;
 	private const float THROW_DISTANCE = 10.0f;
+	private const float SLASH_DISTANCE = 0.5f;
 	public LayerMask whatToHit;
 	public Transform spearPrefab;
 	private MainCharacterMovement mcm;
@@ -41,11 +42,14 @@ public class CharacterFighting : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
 		//SHIELD COVER
 		if(Input.GetKey(KeyCode.S) && (Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.001f )){
-			isShieldDown = true;
+
 			anim.SetBool("shieldCover",true);
 			//here should be implementation of shielded state of character
+			isShieldDown = true;
+
 		}else{
 			isShieldDown = false;
 			anim.SetBool("shieldCover",false);
@@ -56,7 +60,23 @@ public class CharacterFighting : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.A)){	
 			anim.SetBool ("slash",true);
 			//here shloud be impmentation of characters attack
+			int isFR = IsFRtoInt(GetComponent<MainCharacterMovement>().isFacingRight);
+			Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
+			Vector2 throwDirection = (new Vector2(firePoint.position.x+(isFR*10.0f), firePoint.position.y) - firePointPosition);
+
+			RaycastHit2D hit = Physics2D.Raycast(firePointPosition,throwDirection, SLASH_DISTANCE);
+			//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*SLASH_DISTANCE), firePoint.position.y)));
+
+			if(hit.collider != null){ 
+				if(hit.collider.tag == "Enemy" ){
+					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Killed();
+				}		
+			}else{
+				//print ("...Collider of hit was null");
+			}
+
 		}
+
 		if(Input.GetKeyUp(KeyCode.A)){
 			anim.SetBool ("slash",false);
 
@@ -65,9 +85,12 @@ public class CharacterFighting : MonoBehaviour {
 		//THROW
 		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded)){	
 			anim.SetBool ("throw",true);
+
 			//here shloud be impmentation of characters attack
 			//we have to wait for throw animation before throw
 			StartCoroutine(ThrowSpear());
+
+
 		}
 		if(Input.GetKeyUp(KeyCode.D)){
 			anim.SetBool ("throw",false);
@@ -75,8 +98,11 @@ public class CharacterFighting : MonoBehaviour {
 	}
 
 	private IEnumerator ThrowSpear(){
+		int isFR = IsFRtoInt(GetComponent<MainCharacterMovement>().isFacingRight);
+
 		Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-		Vector2 throwDirection = (new Vector2(firePoint.position.x+10.0f, firePoint.position.y) - firePointPosition);
+		Vector2 throwDirection = (new Vector2(firePoint.position.x+(isFR*10.0f), firePoint.position.y) - firePointPosition);
+		//print (throwDirection);
 		anim.SetBool ("throw",true);
 
 		yield return new WaitForSeconds(0.560f);
@@ -86,7 +112,7 @@ public class CharacterFighting : MonoBehaviour {
 		//show user the spear and do some magic
 		ThrowEffect();
 		//just for debugging purposes	
-		Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+THROW_DISTANCE, firePoint.position.y)));
+		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
 
 		//if(hit.collider.tag != "Enemy" ){
 
@@ -94,9 +120,19 @@ public class CharacterFighting : MonoBehaviour {
 
 	}
 
+
+
 	void ThrowEffect(){
 		//spawning of spear
 		Instantiate(spearPrefab, firePoint.position, firePoint.rotation);		
+	}
+
+	private int IsFRtoInt(bool iFR){
+		if(iFR){
+			return 1;
+		}else{
+			return -1;
+		}
 	}
 
 

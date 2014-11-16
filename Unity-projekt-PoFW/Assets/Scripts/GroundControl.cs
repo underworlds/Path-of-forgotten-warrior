@@ -19,7 +19,10 @@ public class GroundControl : MonoBehaviour {
             foreach(Transform obj in objs)
             {
                 //Debug.Log("jump on");
+				if(obj != null){
                 obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk = true;
+				}
+
                 //Debug.Log(obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk.ToString());
             }
             
@@ -38,7 +41,10 @@ public class GroundControl : MonoBehaviour {
             foreach (Transform obj in objs)
             {
                // Debug.Log("move to hero");
-                obj.GetComponent<EnemyBehaviour>().setHeroPosition(new Vector2(coll.gameObject.rigidbody2D.position.x, coll.gameObject.rigidbody2D.position.y));
+				if(obj != null){
+					obj.GetComponent<EnemyBehaviour>().setHeroPosition(new Vector2(coll.gameObject.rigidbody2D.position.x, coll.gameObject.rigidbody2D.position.y));
+				}
+                
             }
            
         }
@@ -54,7 +60,9 @@ public class GroundControl : MonoBehaviour {
             //uspi vsetkych nepriatelov
             foreach (Transform obj in objs)
             {
-                obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk = false;
+				if(obj != null){
+				obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk = false;
+				}
                // Debug.Log("hero leaves");
             }
         }
