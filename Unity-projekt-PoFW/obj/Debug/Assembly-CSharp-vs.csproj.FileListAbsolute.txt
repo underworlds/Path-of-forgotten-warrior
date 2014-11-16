@@ -9,3 +9,14 @@ C:\Users\Richard\Desktop\PV255\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp
 C:\Users\Richard\Desktop\PV255\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
 C:\Users\Richard\Desktop\PV255\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp.dll
 C:\Users\Richard\Desktop\PV255\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp.dll
+C:\Users\Richard\Desktop\Path-of-forgotten-warrior\Unity-projekt-PoFW\obj\Debug\Assembly-CSharp.pdb

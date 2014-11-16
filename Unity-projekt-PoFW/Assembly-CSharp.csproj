@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundControl.cs" />
      <Compile Include="Assets\Scripts\MainCharacterMovement.cs" />
+     <Compile Include="Assets\Scripts\MenuCameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\MoveSpear.cs" />
      <Compile Include="Assets\Scripts\RestartTrigger.cs" />
      <Compile Include="Assets\Scripts\TrapAI.cs" />
