@@ -33,7 +33,6 @@ public class MainCharacterMovement : MonoBehaviour {
 	//Animator
 	private Animator anim;
 
-
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -86,6 +85,7 @@ public class MainCharacterMovement : MonoBehaviour {
 		Vector3 theScale = transform.localScale; //let me get local scale
 		theScale.x *= -1;						// flip x axis	
 		transform.localScale = theScale;		//get it back to local scale 
+
 	}
 	
 	
