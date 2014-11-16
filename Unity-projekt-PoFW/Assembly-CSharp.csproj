@@ -51,6 +51,8 @@
      <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\CharacterFighting.cs" />
      <Compile Include="Assets\Scripts\CoinCollect.cs" />
+     <Compile Include="Assets\Scripts\DialogScript.cs" />
+     <Compile Include="Assets\Scripts\DialogScriptSNDRND.cs" />
      <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundControl.cs" />
