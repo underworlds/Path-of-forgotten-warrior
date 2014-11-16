@@ -37,6 +37,11 @@ public class MoveSpear : MonoBehaviour {
 		Destroy (this.gameObject,0.5f);
 	}
 
+	void OnCollisionEnter2D(Collision2D collision){
+		print ("Spear hit something");
+		Destroy(this.gameObject);
+	}
+
 	void SetIntIsFacingRight(bool isFR){
 		if(isFR){
 			isFacingRight = 1;

@@ -12,7 +12,7 @@ public class CharacterFighting : MonoBehaviour {
 
 	//THROWING SPEAR FIELDS
 	private Transform firePoint;
-	private const float THROW_DISTANCE = 10.0f;
+	private const float THROW_DISTANCE = 5.0f;
 	private const float SLASH_DISTANCE = 0.5f;
 	public LayerMask whatToHit;
 	public Transform spearPrefab;
@@ -112,11 +112,16 @@ public class CharacterFighting : MonoBehaviour {
 		//show user the spear and do some magic
 		ThrowEffect();
 		//just for debugging purposes	
-		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
+		Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
 
-		//if(hit.collider.tag != "Enemy" ){
+		if(hit.collider != null){ 
 
-		//}
+			if(hit.collider.tag == "Enemy" ){
+				hit.collider.gameObject.GetComponent<EnemyBehaviour>().Killed();
+			}		
+		}else{
+			//print ("...Collider of hit was null");
+		}
 
 	}
 

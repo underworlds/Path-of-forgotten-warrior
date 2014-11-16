@@ -29,7 +29,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	private GameManager gameManager;
 	private CharacterFighting charFight;
 	private float timeToNextAttack;
-	private const float UNDEAD_ATTACK_TIME = 3.0f;
+	private const float UNDEAD_ATTACK_TIME = 1.5f;
 	private bool enemyIsKilled = false;
 
 	//Animation fields
@@ -133,7 +133,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	private void StopMovement(){
 		anim.SetBool("walk",false);
 		currentSpeed = 0.0f;
-		
 	}
 
 	//metoda pro utok
@@ -146,22 +145,20 @@ public class EnemyBehaviour : MonoBehaviour {
 			character.GetComponent<Animator>().SetBool("hit", true);
 
 			if((timeToNextAttack < Time.time)){
-
 				timeToNextAttack += UNDEAD_ATTACK_TIME; 
 				gameManager.CharacterReceiveHitFromUndead();
 			}
-
-		}else{
-
 		}
 	}
 
 	public void Killed(){
-		enemyIsKilled = true;
-		character.GetComponent<Animator>().SetBool("hit", false);
-		anim.SetBool("die",true);
-		StartCoroutine(UndeadDie());
-
+		if(!enemyIsKilled){
+			enemyIsKilled = true;
+			character.GetComponent<Animator>().SetBool("hit", false);
+			gameManager.CharacterKillEnemy();
+			anim.SetBool("die",true);
+			StartCoroutine(UndeadDie());
+		}
 	}
 
 	private IEnumerator UndeadDie(){

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 
 	private Transform camera;
 	private GUIText scoreSheetText;
+	private GameObject character;
 	
 	//CHARACTERS VALUES
 	private	static int lifes;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour {
 
 
 	// CONSTANT VALUES ...WILL BE ALLWAYS UPPERCASE
-	private const int STARTING_NUMBER_OF_LIFES = 1;
+	private const int STARTING_NUMBER_OF_LIFES = 3;
 	private const int STARTING_NUMBER_OF_COINS = 0;
 	private const int STARTING_NUMBER_OF_POINTS = 0;
 	private const int STARTING_NUMBER_OF_HP = 100;
@@ -81,6 +82,12 @@ public class GameManager : MonoBehaviour {
 		if (camera == null) {
 			print ("Didnt find Camera ...well fuck");		
 		}
+
+		//Finding character
+		character =  GameObject.FindGameObjectWithTag("Character");
+		if (character == null) {
+			print ("Didnt find character ...well fuck");		
+		} 
 	}
 
 	//END OF SINGLETONE CODE ....INSPIRED FROM: http://unitypatterns.com/singletons/
@@ -170,14 +177,48 @@ public class GameManager : MonoBehaviour {
 //-------------------fighting methods--------------------------
 	public void CharacterReceiveHitFromUndead(){
 		if(hp <= 10){
-			//die()
+			StartCoroutine(Die());
 			print ("Die");
 		}else{
 			hp -= 10;
 		}		
 	}
 
+	public void CharacterKillEnemy(){
+		points = points + POINTS_PER_STD_ENEMY;		
+	}
 
+
+
+
+	//----DIYING SOLUTION--------
+
+	public void killCharacter(){
+
+	}
+
+
+//here the waitforseconds is exactly the length of animaton
+//if you move with animation sample you have to change this
+
+private IEnumerator Die(){
+	character.GetComponent<Animator>().SetBool("die",true); 
+	yield return new WaitForSeconds(1.273f);
+	Destroy(character.gameObject);
+	TotalReset();
+	
+	//...should be returned to GAME OVER scene and then to MAIN MENU scene
+	RemoveOneLife();
+	if((lifes) == 0){
+
+			Application.LoadLevel("Lvl1-round1");
+	}else{
+
+			Application.LoadLevel(Application.loadedLevel);
+	}
+
+	
+}
 
 
 
