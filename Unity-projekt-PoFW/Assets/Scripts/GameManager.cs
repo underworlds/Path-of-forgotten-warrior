@@ -175,13 +175,28 @@ public class GameManager : MonoBehaviour {
 	}
 
 //-------------------fighting methods--------------------------
+	private float damage = 0.1f;
+	private float cumulateDamage = 0.0f;
+	private bool isDead = false;
 	public void CharacterReceiveHitFromUndead(){
-		if(hp <= 10){
+
+		cumulateDamage += damage;
+
+		if(Mathf.Abs(cumulateDamage - 1.0f) < 0.09f){
+			hp -= 1;
+			cumulateDamage = 0.0f;	
+		}
+		
+		if(hp <= 0){
+			hp = 0;
+		}
+
+		if(hp == 0 && !isDead){
+			isDead = true;
 			StartCoroutine(Die());
-			print ("Die");
-		}else{
-			hp -= 10;
-		}		
+
+		}
+				
 	}
 
 	public void CharacterKillEnemy(){

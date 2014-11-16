@@ -28,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	private GameObject character;
 	private GameManager gameManager;
 	private CharacterFighting charFight;
-	private float timeToNextAttack;
+	private float timeToNextAttack = 0.0f;
 	private const float UNDEAD_ATTACK_TIME = 1.5f;
 	private bool enemyIsKilled = false;
 
@@ -58,8 +58,8 @@ public class EnemyBehaviour : MonoBehaviour {
 			print ("Didnt find gameManager ...well fuck");		
 		}
 
-
-		timeToNextAttack = Time.time;
+		print ("Time at start > " + timeToNextAttack);
+		//timeToNextAttack = Time.time;
 
     }
 
@@ -143,11 +143,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		if( Vector3.Distance(position,this.transform.position) < 0.5f && !charFight.isShieldDown){
 	
 			character.GetComponent<Animator>().SetBool("hit", true);
-
-			if((timeToNextAttack < Time.time)){
-				timeToNextAttack += UNDEAD_ATTACK_TIME; 
-				gameManager.CharacterReceiveHitFromUndead();
-			}
+			gameManager.CharacterReceiveHitFromUndead();
 		}
 	}
 

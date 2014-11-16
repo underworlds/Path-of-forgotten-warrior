@@ -13,7 +13,7 @@ public class CharacterFighting : MonoBehaviour {
 	//THROWING SPEAR FIELDS
 	private Transform firePoint;
 	private const float THROW_DISTANCE = 5.0f;
-	private const float SLASH_DISTANCE = 0.5f;
+	private const float SLASH_DISTANCE = 0.3f;
 	public LayerMask whatToHit;
 	public Transform spearPrefab;
 	private MainCharacterMovement mcm;

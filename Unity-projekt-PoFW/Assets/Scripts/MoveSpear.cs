@@ -18,8 +18,15 @@ public class MoveSpear : MonoBehaviour {
 			print ("Didnt find mcm component ...well fuck");		
 		}  
 		//asking characters param isFacingRight if true or false
-		//and do this only once, in START()
+		//and do this only once, at START()
 		SetIntIsFacingRight(mcm.isFacingRight);
+
+		//set rotation of sprite correctly
+		Quaternion rotationOfSpear = transform.rotation;
+		rotationOfSpear.y = 90 - (isFacingRight * 90); //it will be 180 for isNotFacingRight and 0 for isFacingRight
+		transform.rotation = rotationOfSpear; 
+		print ("End of start");
+
 	}
 	
 	// Update is called once per frame
@@ -30,17 +37,21 @@ public class MoveSpear : MonoBehaviour {
 		rotationOfSpear.y = 90 - (isFacingRight * 90); //it will be 180 for isNotFacingRight and 0 for isFacingRight
 		transform.rotation = rotationOfSpear; 
 
-		//move sprite
-		transform.Translate(isFacingRight*transform.right * Time.deltaTime * MOVE_SPEED);
+		
 
+		//move sprite
+		print ("Going to move");
+		transform.Translate(isFacingRight* transform.right * Time.deltaTime * MOVE_SPEED);
+		print ("spear moved");
 		//destroy  after 1 second
 		Destroy (this.gameObject,0.5f);
 	}
 
 	void OnCollisionEnter2D(Collision2D collision){
-		print ("Spear hit something");
+		print ("Spear hit something " + collision.gameObject.tag);
 		Destroy(this.gameObject);
 	}
+
 
 	void SetIntIsFacingRight(bool isFR){
 		if(isFR){
