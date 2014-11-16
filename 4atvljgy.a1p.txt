@@ -1,0 +1,25 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# Explicit paths specified without -i or -o; assuming --only paths...
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Unity-projekt-PoFW/Assets/Scenes/Lvl1-round1.unity
+#	modified:   Unity-projekt-PoFW/Library/CurrentMaximizeLayout.dwlt
+#	modified:   Unity-projekt-PoFW/Library/EditorUserBuildSettings.asset
+#	modified:   Unity-projekt-PoFW/Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   Unity-projekt-PoFW/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	modified:   Unity-projekt-PoFW/Library/assetDatabase3
+#	modified:   Unity-projekt-PoFW/Library/metadata/30/30dd21df3ce8d1149808b4ea77aff576
+#	modified:   Unity-projekt-PoFW/Library/metadata/39/398c519323bd1a942ab868ff01f92d5b
+#	modified:   Unity-projekt-PoFW/Library/metadata/8a/8a35dc26d3b46164194a7b4a0c99607a
+#	modified:   Unity-projekt-PoFW/Library/metadata/a8/a8b4f9050d231194092f4fa518052ad6
+#	modified:   Unity-projekt-PoFW/Unity-projekt-PoFW-csharp.sln
+#	modified:   Unity-projekt-PoFW/Unity-projekt-PoFW.sln
+#
+# Untracked files:
+#	Unity-projekt-PoFW/Temp/
+#
+
