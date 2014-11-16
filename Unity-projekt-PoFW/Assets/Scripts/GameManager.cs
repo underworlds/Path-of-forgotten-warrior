@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour {
 	private Transform camera;
 	private GUIText scoreSheetText;
 	private GameObject character;
-	
+	private Animator anim;
+
 	//CHARACTERS VALUES
 	private	static int lifes;
 	private static int coins;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour {
 	private const int STARTING_NUMBER_OF_POINTS = 0;
 	private const int STARTING_NUMBER_OF_HP = 100;
 
-	private const int POINTS_PER_COIN = 50;
+	private const int POINTS_PER_COIN = 10;
 	private const int POINTS_PER_STD_ENEMY = 20; //should be multiplied by level numer (eg 20 x 1...(level 1))
 
 	//strings to adding points
@@ -84,10 +85,17 @@ public class GameManager : MonoBehaviour {
 		}
 
 		//Finding character
+//		print ("CALLED AWAKE");
 		character =  GameObject.FindGameObjectWithTag("Character");
 		if (character == null) {
-			print ("Didnt find character ...well fuck");		
+			print ("Didnt find Character ...well fuck");		
 		} 
+
+		anim = character.GetComponent<Animator>();
+		if(anim == null){
+			print ("Didnt find Animator ...well fuck");
+		}
+
 	}
 
 	//END OF SINGLETONE CODE ....INSPIRED FROM: http://unitypatterns.com/singletons/
@@ -136,6 +144,7 @@ public class GameManager : MonoBehaviour {
 	public void ResetCollectedValues(){
 		coins = cpCoins;
 		points = cpPoints;
+		hp = 100;
 	}
 
 
@@ -175,9 +184,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 //-------------------fighting methods--------------------------
-	private float damage = 0.1f;
+	private float damage = 0.2f;
 	private float cumulateDamage = 0.0f;
 	private bool isDead = false;
+
 	public void CharacterReceiveHitFromUndead(){
 
 		cumulateDamage += damage;
@@ -189,18 +199,13 @@ public class GameManager : MonoBehaviour {
 		
 		if(hp <= 0){
 			hp = 0;
+			killCharacter();
 		}
-
-		if(hp == 0 && !isDead){
-			isDead = true;
-			StartCoroutine(Die());
-
-		}
-				
+	
 	}
 
 	public void CharacterKillEnemy(){
-		points = points + POINTS_PER_STD_ENEMY;		
+		AddPoints(STANDART_ENEMY_STR);	
 	}
 
 
@@ -209,26 +214,40 @@ public class GameManager : MonoBehaviour {
 	//----DIYING SOLUTION--------
 
 	public void killCharacter(){
+		hp = 0;
+		
+		if(hp == 0 && !isDead){
+			isDead = true;
 
+			StartCoroutine(Die());
+			
+		}
+		
 	}
+
 
 
 //here the waitforseconds is exactly the length of animaton
 //if you move with animation sample you have to change this
 
 private IEnumerator Die(){
-	character.GetComponent<Animator>().SetBool("die",true); 
+	anim.SetBool("die",true);
 	yield return new WaitForSeconds(1.273f);
-	Destroy(character.gameObject);
-	TotalReset();
 	
-	//...should be returned to GAME OVER scene and then to MAIN MENU scene
-	RemoveOneLife();
-	if((lifes) == 0){
 
+	
+
+	
+	RemoveOneLife();
+	Destroy(character.gameObject);
+	if((lifes) == 0){
+			TotalReset();
+			isDead = false;
+			//...should be returned to GAME OVER scene and then to MAIN MENU scene
 			Application.LoadLevel("Lvl1-round1");
 	}else{
-
+			ResetCollectedValues();
+			isDead = false;
 			Application.LoadLevel(Application.loadedLevel);
 	}
 

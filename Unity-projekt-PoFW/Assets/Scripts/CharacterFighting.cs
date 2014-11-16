@@ -105,7 +105,7 @@ public class CharacterFighting : MonoBehaviour {
 		//print (throwDirection);
 		anim.SetBool ("throw",true);
 
-		yield return new WaitForSeconds(0.560f);
+		yield return new WaitForSeconds(0.520f);
 
 		// cast ray to see if we hit enemy
 		RaycastHit2D hit = Physics2D.Raycast(firePointPosition,throwDirection, THROW_DISTANCE, whatToHit);

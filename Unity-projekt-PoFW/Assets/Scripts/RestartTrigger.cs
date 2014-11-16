@@ -4,11 +4,11 @@ using System.Collections;
 
 public class RestartTrigger : MonoBehaviour {
 
-	private Transform character;
+	//private Transform character;
 	private GameManager gameManager;
-	private Animator anim;
+	//private Animator anim;
 
-	private Vector3 characterStartPosition;
+
 
 
 	//COLISION WITH RESTART FLOOR
@@ -17,7 +17,7 @@ public class RestartTrigger : MonoBehaviour {
         //get last number of hero's lifes from gameManager
         if (obj.gameObject.tag.Equals("Character")){
 			//reaguje na pocet zivotu charactera
-			ResolveCharacterLifeCount();
+			gameManager.killCharacter();
         }
     }
 
@@ -27,10 +27,10 @@ public class RestartTrigger : MonoBehaviour {
     {
         if (collision.gameObject.tag.Equals("Character"))
         {
-			ResolveCharacterLifeCount();  
+			gameManager.killCharacter();
         }
     }
-
+	/*
 	void ResolveCharacterLifeCount(){
 		//kontroluje kto sa dotkol danej plosiny 
 		int lifesOfCharacter = gameManager.GetLifes();
@@ -38,22 +38,21 @@ public class RestartTrigger : MonoBehaviour {
 		if (lifesOfCharacter > 1)
 		{//hero had 2 or 3 lifes left
 			
-			//Reaction of GameManager
-			gameManager.RemoveOneLife();
-			gameManager.ResetCollectedValues();
-			
-			//Restart LEVEL
-			Application.LoadLevel(Application.loadedLevel);
+			//Reaction of GameManager			
+			gameManager.killCharacter();
 			
 		}
 		else
 		{//hero had only 1 life left 
-			StartCoroutine(Die());
+			gameManager.RemoveOneLife();
+			gameManager.killCharacter();
 		}
 	}
 
 	//here the waitforseconds is exactly the length of animaton
 	//if you move with animation sample you have to change this
+
+	//is implemented via gamemanager
 
 	private IEnumerator Die(){
 		anim.SetBool("die",true);
@@ -65,7 +64,7 @@ public class RestartTrigger : MonoBehaviour {
 		Application.LoadLevel("Lvl1-round1");
 	} 	
 
-
+*/
 
 
 //-------------------INITIALIZATION CODE-----------------
@@ -76,17 +75,17 @@ public class RestartTrigger : MonoBehaviour {
 		if (gameManager== null) {
 			print ("Didnt find gameManager ...well fuck");		
 		}
-
+		/*
 		character =  GameObject.FindGameObjectWithTag("Character").transform;
 		if (character == null) {
 			print ("Didnt find character ...well fuck");		
-		} 
-
+		} */
+		/*
 		anim =  GameObject.FindGameObjectWithTag("Character").GetComponent<Animator>();
 		if (character == null) {
 			print ("Didnt find animator ...well fuck");		
-		} 
-		characterStartPosition = character.transform.position;
+		} */
+		//characterStartPosition = character.transform.position;
 	}
 	
 	// Update is called once per frame
