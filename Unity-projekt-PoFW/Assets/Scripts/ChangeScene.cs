@@ -9,6 +9,7 @@ public class ChangeScene : MonoBehaviour {
 	private const string LVL_01_RND_02 = "Lvl1-round2";
 	private const string LVL_01_RND_03 = "Lvl1-round3";
 	private const string LVL_01_RND_04 = "Lvl1-round4";
+	private const string THE_END = "TheEnd";
 	//LEVEL 2
 
 	void Start(){
@@ -36,7 +37,7 @@ public class ChangeScene : MonoBehaviour {
 			break;
 		case LVL_01_RND_02:
 			gameManager.Checkpoint();
-			Application.LoadLevel(LVL_01_RND_03);
+			Application.LoadLevel(THE_END);
 			break;
 		case LVL_01_RND_03:
 			gameManager.Checkpoint();

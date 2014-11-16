@@ -266,7 +266,7 @@ private IEnumerator Die(){
 			TotalReset();
 			isDead = false;
 			//...should be returned to GAME OVER scene and then to MAIN MENU scene
-			Application.LoadLevel("Lvl1-round1");
+			Application.LoadLevel("MainMenu");
 	}else{
 			ResetCollectedValues();
 			isDead = false;
