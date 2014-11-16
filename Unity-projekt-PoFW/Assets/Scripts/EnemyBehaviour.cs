@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿   using UnityEngine;
 using System.Collections;
 
 public class EnemyBehaviour : MonoBehaviour {
@@ -11,7 +11,10 @@ public class EnemyBehaviour : MonoBehaviour {
     public float gravity = 2;
     public float speed = 8;
     public float acceleration = 30;
-    private float targetSpeed = 2.0f;
+    private float targetSpeed = 1.5f;
+
+	//sila utoku nepratel
+	private const int DAMAGE_OF_UNDEAD = 10;
 
     //privatne premenne na chod nepriatela
     private float currentSpeed;
@@ -23,7 +26,10 @@ public class EnemyBehaviour : MonoBehaviour {
 	//fields for attack
 	private bool attacking = false;
 	private GameObject character;
-	private GameManager;
+	private GameManager gameManager;
+	private CharacterFighting charFight;
+	private float timeToNextAttack;
+	private const float UNDEAD_ATTACK_TIME = 3.0f;
 
 	//Animation fields
 	Animator anim;
@@ -42,11 +48,21 @@ public class EnemyBehaviour : MonoBehaviour {
 		character =  GameObject.FindGameObjectWithTag("Character");
 		if (character == null) {
 			print ("Didnt find character ...well fuck");		
-		} 
+		}
+
+		charFight = character.GetComponent<CharacterFighting>();
+
+		gameManager = GameObject.FindObjectOfType<GameManager>();
+		if (gameManager== null) {
+			print ("Didnt find gameManager ...well fuck");		
+		}
+
+
+		timeToNextAttack = Time.time;
+
     }
 
     void Update(){
-
         //je hrdina na doske - aktivacia nepriatelov
         if (IsHeroOnDesk){
             
@@ -60,6 +76,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			}else{
 				attacking = false;
 				anim.SetBool("attack",false);
+				character.GetComponent<Animator>().SetBool("hit", false);
 			}
 
 
@@ -85,7 +102,7 @@ public class EnemyBehaviour : MonoBehaviour {
             if (position.x > this.rigidbody2D.position.x && attacking == false) {
 				//nastavenie rychlosti a animace pohybu
 				anim.SetBool("walk",true);
-				currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);v
+				currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
                 //pohyb
                 transform.position += Vector3.right * currentSpeed * Time.deltaTime;
                 
@@ -123,11 +140,23 @@ public class EnemyBehaviour : MonoBehaviour {
 		print ("attack");
 		anim.SetBool("attack",true);
 
-		if( Vector3.Distance(position,this.transform.position) < 0.5f  && true /*is characters shield down*/){
+		if( Vector3.Distance(position,this.transform.position) < 0.5f && !charFight.isShieldDown){
+	
+			character.GetComponent<Animator>().SetBool("hit", true);
+
+			if((timeToNextAttack < Time.time)){
+
+				timeToNextAttack += UNDEAD_ATTACK_TIME; 
+				gameManager.CharacterReceiveHitFromUndead();
+			}
+
+
+		}else{
 
 		}
-
 	}
+
+
     //sposob vypoctu rychlosti nepriatela
     private float IncrementTowards(float n, float target, float a)
     {

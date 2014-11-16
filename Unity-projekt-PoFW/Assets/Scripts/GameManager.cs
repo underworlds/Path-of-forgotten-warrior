@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour {
 		TextUpdate ();
 	}
 
-	
+
 	public void AddCoin(){
 		coins++;		
 		AddPoints (COIN_STR);
@@ -166,6 +166,37 @@ public class GameManager : MonoBehaviour {
 	public void TotalReset(){
 		this.Start ();
 	}
+
+//-------------------fighting methods--------------------------
+	public void CharacterReceiveHitFromUndead(){
+		if(hp <= 10){
+			//die()
+			print ("Die");
+		}else{
+			hp -= 10;
+		}		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/////////////////////---------UNUSED CODE------------//////////////
 	/// 
 	/// 
