@@ -11,16 +11,14 @@ public class CameraController : MonoBehaviour {
     public Texture ScoreLimits;
 
 
-    public Texture NewGame;
-
-    public string Level1Round1;
-
     public Texture Continue;
-    public Texture ChooseLevel;
     public Texture BestScore;
-    public Texture Credits;
     public Texture Help;
-    public Texture Exit;
+    public Texture Return;
+
+    public int Lifes { get; set; }
+    public int Points { get; set; }
+    public int HP { get; set; }
 
 	private Transform character;
 	private float smoothRate = 0.5f;
@@ -36,6 +34,9 @@ public class CameraController : MonoBehaviour {
 				}
 		velocity = new Vector2(0.5f,0.5f);
         isGamePaused = false;
+        Lifes = 3;
+        Points = 0;
+        HP = 100;
 	}
 
 	void Update(){
@@ -50,12 +51,10 @@ public class CameraController : MonoBehaviour {
         {
             if (isGamePaused)
             {
-                print("itHappen");
                 isGamePaused = false;
             }
             else
             {
-                print("itdidnotHappen");
                 isGamePaused = true;
             }
 
@@ -70,36 +69,45 @@ public class CameraController : MonoBehaviour {
     private void OnGUI()
     {
         //healthbar-done
-        GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f, Screen.height * 0.78f), HealthBar, "");
+        GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP/100f), Screen.height * 0.78f), HealthBar, "");
 
         //healthbarlimits-done
         GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f, Screen.width * 0.24f, Screen.height * 0.78f), HealthBarLimits, "");
 
         //helmets-done
+        switch (Lifes)
+        {
+            case 1:
+                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                break;
+            case 2:
+                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                 break;
+            case 3:
+                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f * 2f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
 
-        GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-        GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-        GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f * 2f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-
+                break;
+        }
+       
         //score
-        GUI.Button(new Rect(Screen.width * 0.24f, Screen.height * 0.21f, Screen.width * 0.1f, Screen.height * 0.1f), ScoreLimits, "666");
+        GUI.Button(new Rect(Screen.width * 0.24f, Screen.height * 0.21f, Screen.width * 0.1f, Screen.height * 0.1f), ScoreLimits, "");
 
         //ingame menu
         if (isGamePaused)
         {
-
-            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f, Screen.width / 5f, Screen.height / 10f), NewGame, ""))
+            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f, Screen.width / 5f, Screen.height / 10f), Continue, ""))
             {
-                Application.LoadLevel(Level1Round1);
+                isGamePaused = false;
             }
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f, Screen.width / 5f, Screen.height / 10f), Continue, "");
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 2f, Screen.width / 5f, Screen.height / 10f), ChooseLevel, "");
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 3f, Screen.width / 5f, Screen.height / 10f), BestScore, "");
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Credits, "");
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 5f, Screen.width / 5f, Screen.height / 10f), Help, "");
-            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 6f, Screen.width / 5f, Screen.height / 10f), Exit, ""))
+            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 2f, Screen.width / 5f, Screen.height / 10f), BestScore, "");
+            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 3f, Screen.width / 5f, Screen.height / 10f), Help, "");
+      
+            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Return, ""))
             {
-                Application.Quit();
+                Application.LoadLevel("MainMenu");
             }
         }
     }

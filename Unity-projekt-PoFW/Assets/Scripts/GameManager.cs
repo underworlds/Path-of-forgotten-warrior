@@ -114,6 +114,28 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		TextUpdate ();
+        camera = GameObject.FindObjectOfType<Camera>().transform;
+        if (camera == null)
+        {
+            print("Didnt find Camera ...well fuck");
+        }
+
+        //Finding character
+        //		print ("CALLED AWAKE");
+        character = GameObject.FindGameObjectWithTag("Character");
+        if (character == null)
+        {
+            print("Didnt find Character ...well fuck");
+        }
+
+        anim = character.GetComponent<Animator>();
+        if (anim == null)
+        {
+            print("Didnt find Animator ...well fuck");
+        }
+        camera.GetComponent<CameraController>().Lifes = lifes;
+        camera.GetComponent<CameraController>().Points = points;
+        camera.GetComponent<CameraController>().HP = hp;
 	}
 
 
@@ -150,14 +172,14 @@ public class GameManager : MonoBehaviour {
 
 	void TextUpdate(){
 		if(scoreSheetText != null){
-
-
+            scoreSheetText.text = points + "";
+/*
 			scoreSheetText.text = "Number of lifes: " + lifes +
 				"\nNumber of coins: " + coins +
 					"\nNumber of points: " + points +
 					"\nHealth: " + hp +
 					"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK"+
-					"\nCP values: [points / coins] " + cpPoints +  " / " +cpCoins;
+					"\nCP values: [points / coins] " + cpPoints +  " / " +cpCoins;*/
 
 		}else{
 			scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
