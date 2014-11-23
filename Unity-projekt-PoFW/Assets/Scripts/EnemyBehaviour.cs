@@ -59,7 +59,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		}
     }
 
-    void Update(){
+    void FixedUpdate(){
         //je hrdina na doske - aktivacia nepriatelov
         if (IsHeroOnDesk && !enemyIsKilled){
             

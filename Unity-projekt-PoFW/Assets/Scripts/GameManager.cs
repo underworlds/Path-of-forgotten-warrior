@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	private Animator anim;
 
 	private bool load = true;
+	private int loadCounter = 0;
 
 	//FIGHTING VALUES
 	private float damage = 0.2f;
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour {
 
 		if(load){
 			//Finding camera
-	
+			print ("LOADING");		
 			camera = GameObject.FindObjectOfType<Camera>().transform;
 			if (camera == null) {
 				print ("Didnt find Camera ...well fuck");		
@@ -124,8 +125,11 @@ public class GameManager : MonoBehaviour {
 			if(anim == null){
 				print ("Didnt find Animator ...well fuck");
 			}
-
-			load = false;
+			loadCounter ++;
+			if(loadCounter == 10){
+				loadCounter = 0;
+				load = false;
+			}
 		}
 
         camera.GetComponent<CameraController>().Lifes = lifes;
@@ -166,6 +170,7 @@ public class GameManager : MonoBehaviour {
 	 * So every time from now, when player lost his life, he will respawn with this checkpoint values.
 	 */
 	public void Checkpoint(){
+		load=true;
 		cpCoins = coins;
 		cpPoints = points;
 	} 
