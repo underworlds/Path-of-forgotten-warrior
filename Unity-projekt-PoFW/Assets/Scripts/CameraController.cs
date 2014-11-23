@@ -30,12 +30,16 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		character =  GameObject.FindGameObjectWithTag("Character").transform;
 		if (character == null) {
 						print ("Didnt find character ...well fuck");		
 				}
+		//init for camera location
 		velocity = new Vector2(0.5f,0.5f);
-        isGamePaused = false;
+        
+		//init for GUI
+		isGamePaused = false;
         Lifes = 3;
         Points = 0;
         HP = 100;
@@ -49,18 +53,16 @@ public class CameraController : MonoBehaviour {
 		//UPDATES CAMERA TO OUR CHARACTERS LOCATION
 		Vector3 newPos = new Vector3 (newPos2D.x, newPos2D.y, this.transform.position.z);
 		this.transform.position = Vector3.Slerp (transform.position, newPos, Time.time);
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isGamePaused)
-            {
+        
+	
+		//solution for in game menu
+		if (Input.GetKeyDown(KeyCode.Escape)){
+            if (isGamePaused){
                 isGamePaused = false;
             }
-            else
-            {
+            else{
                 isGamePaused = true;
             }
-
-
         }
 	}
 
@@ -68,6 +70,8 @@ public class CameraController : MonoBehaviour {
 		print("Const is goint to be " + newLookTransformConst); 
 		lookTransformConst = newLookTransformConst;
 	}
+
+
     private void OnGUI()
     {
         //healthbar-done

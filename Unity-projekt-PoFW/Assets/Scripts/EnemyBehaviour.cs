@@ -57,10 +57,6 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (gameManager== null) {
 			print ("Didnt find gameManager ...well fuck");		
 		}
-
-		print ("Time at start > " + timeToNextAttack);
-		//timeToNextAttack = Time.time;
-
     }
 
     void Update(){
@@ -129,7 +125,7 @@ public class EnemyBehaviour : MonoBehaviour {
     
 
 
-	//metoda zastaveni pohyby
+	//metoda zastaveni pohybu
 	private void StopMovement(){
 		anim.SetBool("walk",false);
 		currentSpeed = 0.0f;
@@ -137,11 +133,9 @@ public class EnemyBehaviour : MonoBehaviour {
 
 	//metoda pro utok
 	private void Attack(){
-		print ("attack");
 		anim.SetBool("attack",true);
 
 		if( Vector3.Distance(position,this.transform.position) < 0.5f && !charFight.isShieldDown){
-	
 			character.GetComponent<Animator>().SetBool("hit", true);
 			gameManager.CharacterReceiveHitFromUndead();
 		}
@@ -152,12 +146,13 @@ public class EnemyBehaviour : MonoBehaviour {
 			enemyIsKilled = true;
 			character.GetComponent<Animator>().SetBool("hit", false);
 			gameManager.CharacterKillEnemy();
-			anim.SetBool("die",true);
+
 			StartCoroutine(UndeadDie());
 		}
 	}
 
 	private IEnumerator UndeadDie(){
+		anim.SetBool("die",true);
 		yield return new WaitForSeconds(1.200f);
 		Destroy(this.gameObject);
 	}

@@ -47,7 +47,6 @@ public class CharacterFighting : MonoBehaviour {
 		if(Input.GetKey(KeyCode.S) && (Mathf.Abs(Input.GetAxis("Horizontal")) <= 0.001f )){
 
 			anim.SetBool("shieldCover",true);
-			//here should be implementation of shielded state of character
 			isShieldDown = true;
 
 		}else{
@@ -59,7 +58,7 @@ public class CharacterFighting : MonoBehaviour {
 		//SLASH
 		if(Input.GetKeyDown(KeyCode.A)){	
 			anim.SetBool ("slash",true);
-			//here shloud be impmentation of characters attack
+
 			int isFR = IsFRtoInt(GetComponent<MainCharacterMovement>().isFacingRight);
 			Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
 			Vector2 throwDirection = (new Vector2(firePoint.position.x+(isFR*10.0f), firePoint.position.y) - firePointPosition);
@@ -86,7 +85,6 @@ public class CharacterFighting : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded)){	
 			anim.SetBool ("throw",true);
 
-			//here shloud be impmentation of characters attack
 			//we have to wait for throw animation before throw
 			StartCoroutine(ThrowSpear());
 
@@ -112,7 +110,7 @@ public class CharacterFighting : MonoBehaviour {
 		//show user the spear and do some magic
 		ThrowEffect();
 		//just for debugging purposes	
-		Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
+		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
 
 		if(hit.collider != null){ 
 

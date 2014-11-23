@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveSpear : MonoBehaviour {
 
-	private const float MOVE_SPEED	 = 5.0f;
+	private const float MOVE_SPEED = 5.0f;
 	private Transform character;
 	private MainCharacterMovement mcm;
 
@@ -17,16 +17,16 @@ public class MoveSpear : MonoBehaviour {
 		if (mcm == null) {
 			print ("Didnt find mcm component ...well fuck");		
 		}  
+
 		//asking characters param isFacingRight if true or false
 		//and do this only once, at START()
 		SetIntIsFacingRight(mcm.isFacingRight);
 
 		//set rotation of sprite correctly
+		//it is also in Start() because in very first frame spear was rotated incorrectly...
 		Quaternion rotationOfSpear = transform.rotation;
 		rotationOfSpear.y = 90 - (isFacingRight * 90); //it will be 180 for isNotFacingRight and 0 for isFacingRight
 		transform.rotation = rotationOfSpear; 
-		print ("End of start");
-
 	}
 	
 	// Update is called once per frame
@@ -39,14 +39,12 @@ public class MoveSpear : MonoBehaviour {
 
 		
 
-		//move sprite
-		print ("Going to move");
+		//move spear
 		transform.Translate(isFacingRight* transform.right * Time.deltaTime * MOVE_SPEED);
-		print ("spear moved");
-		//destroy  after 1 second
+		//destroy spear
 		Destroy (this.gameObject,0.5f);
 	}
-
+	
 	void OnCollisionEnter2D(Collision2D collision){
 		print ("Spear hit something " + collision.gameObject.tag);
 		Destroy(this.gameObject);
@@ -59,17 +57,5 @@ public class MoveSpear : MonoBehaviour {
 		}else{
 			isFacingRight = -1;
 		}
-
 	}
-
-/*	void OnCollisionEnter2D(Collision2D collision){
-		if (!(collision.gameObject.tag.Equals("Character")))
-		{
-			Destroy(this.gameObject, 0.5f);
-		}
-
-
-	}
-*/
-
 }

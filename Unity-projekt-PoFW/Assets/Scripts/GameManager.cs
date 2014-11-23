@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour {
 	private GameObject character;
 	private Animator anim;
 
+	private bool load = true;
+
+	//FIGHTING VALUES
+	private float damage = 0.2f;
+	private float cumulateDamage = 0.0f;
+	private bool isDead = false;
+
 	//CHARACTERS VALUES
 	private	static int lifes;
 	private static int coins;
@@ -76,24 +83,8 @@ public class GameManager : MonoBehaviour {
 			if(this != _instance){
 				Destroy(this.gameObject);
 			}
-		}
 
-		//Finding camera
-		camera = GameObject.FindObjectOfType<Camera>().transform;
-		if (camera == null) {
-			print ("Didnt find Camera ...well fuck");		
-		}
 
-		//Finding character
-//		print ("CALLED AWAKE");
-		character =  GameObject.FindGameObjectWithTag("Character");
-		if (character == null) {
-			print ("Didnt find Character ...well fuck");		
-		} 
-
-		anim = character.GetComponent<Animator>();
-		if(anim == null){
-			print ("Didnt find Animator ...well fuck");
 		}
 
 	}
@@ -109,34 +100,40 @@ public class GameManager : MonoBehaviour {
 
 		cpCoins = STARTING_NUMBER_OF_COINS;
 		cpPoints = STARTING_NUMBER_OF_POINTS;
+	
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		TextUpdate ();
-        camera = GameObject.FindObjectOfType<Camera>().transform;
-        if (camera == null)
-        {
-            print("Didnt find Camera ...well fuck");
-        }
 
-        //Finding character
-        //		print ("CALLED AWAKE");
-        character = GameObject.FindGameObjectWithTag("Character");
-        if (character == null)
-        {
-            print("Didnt find Character ...well fuck");
-        }
+		if(load){
+			//Finding camera
+	
+			camera = GameObject.FindObjectOfType<Camera>().transform;
+			if (camera == null) {
+				print ("Didnt find Camera ...well fuck");		
+			}
 
-        anim = character.GetComponent<Animator>();
-        if (anim == null)
-        {
-            print("Didnt find Animator ...well fuck");
-        }
+			character =  GameObject.FindGameObjectWithTag("Character");
+			if (character == null) {
+				print ("Didnt find Character ...well fuck");		
+			} 
+
+			anim = character.GetComponent<Animator>();
+			if(anim == null){
+				print ("Didnt find Animator ...well fuck");
+			}
+
+			load = false;
+		}
+
         camera.GetComponent<CameraController>().Lifes = lifes;
         camera.GetComponent<CameraController>().Points = points;
         camera.GetComponent<CameraController>().HP = hp;
 	}
+
+
 
 
 	public void AddCoin(){
@@ -163,12 +160,29 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+	/**
+	 * This method will be used, when player hit the change scene trigger.
+	 * Current values of points coins will be stored to cpPoints, cpCoins values;
+	 * So every time from now, when player lost his life, he will respawn with this checkpoint values.
+	 */
+	public void Checkpoint(){
+		cpCoins = coins;
+		cpPoints = points;
+	} 
+
 	public void ResetCollectedValues(){
 		coins = cpCoins;
 		points = cpPoints;
 		hp = 100;
 	}
 
+	/**
+	 * This method will be used, when player dies. (Lost his 3 lifes).
+	 * All atributes will be setted to init values.	
+	 */
+	public void TotalReset(){
+		this.Start ();
+	}
 
 	void TextUpdate(){
 		if(scoreSheetText != null){
@@ -187,28 +201,10 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	/**
-	 * This method will be used, when player hit the change scene trigger.
-	 * Current values of points coins will be stored to cpPoints, cpCoins values;
-	 * So every time from now, when player lost his life, he will respawn with this checkpoint values.
-	 */
-	public void Checkpoint(){
-		cpCoins = coins;
-		cpPoints = points;
-	} 
 
-	/**
-	 * This method will be used, when player dies. (Lost his 3 lifes).
-	 * All atributes will be setted to init values.	
-	 */
-	public void TotalReset(){
-		this.Start ();
-	}
 
 //-------------------fighting methods--------------------------
-	private float damage = 0.2f;
-	private float cumulateDamage = 0.0f;
-	private bool isDead = false;
+
 
 	public void CharacterReceiveHitFromUndead(){
 
@@ -223,13 +219,11 @@ public class GameManager : MonoBehaviour {
 			hp = 0;
 			killCharacter();
 		}
-	
 	}
 
 	public void CharacterKillEnemy(){
 		AddPoints(STANDART_ENEMY_STR);	
 	}
-
 
 
 
@@ -240,11 +234,8 @@ public class GameManager : MonoBehaviour {
 		
 		if(hp == 0 && !isDead){
 			isDead = true;
-
 			StartCoroutine(Die());
-			
 		}
-		
 	}
 
 
@@ -256,24 +247,19 @@ private IEnumerator Die(){
 	anim.SetBool("die",true);
 	yield return new WaitForSeconds(1.273f);
 	
-
-	
-
-	
 	RemoveOneLife();
 	Destroy(character.gameObject);
 	if((lifes) == 0){
 			TotalReset();
 			isDead = false;
-			//...should be returned to GAME OVER scene and then to MAIN MENU scene
+			load = true;
 			Application.LoadLevel("MainMenu");
 	}else{
 			ResetCollectedValues();
 			isDead = false;
+			load = true;
 			Application.LoadLevel(Application.loadedLevel);
 	}
-
-	
 }
 
 

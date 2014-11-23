@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class TrapAI : MonoBehaviour {
-
+	private const float ROTATION_SPEED = 400.0f;
 
     private float right;
     // Use this for initialization
@@ -24,7 +25,7 @@ public class TrapAI : MonoBehaviour {
     {
         this.rigidbody2D.velocity = new Vector2(right, rigidbody2D.velocity.y);
 
-        transform.Rotate(0, 0, 10 * right);
+        transform.Rotate(0, 0, ROTATION_SPEED * right * Time.deltaTime);
     }
 
 
