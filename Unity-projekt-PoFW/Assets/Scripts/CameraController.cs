@@ -114,9 +114,12 @@ public class CameraController : MonoBehaviour {
 
             if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Return, ""))
             {
-                Application.LoadLevel("MainMenu");
+				GameObject.FindObjectOfType<GameManager>().inMainMenu = true;
+				Application.LoadLevel("MainMenu");
             }
         }
+
+
         else
         {
            // audio.PlayOneShot(GameClip);

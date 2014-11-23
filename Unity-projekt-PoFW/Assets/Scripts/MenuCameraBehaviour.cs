@@ -21,8 +21,13 @@ public class MenuCameraBehaviour : MonoBehaviour {
 
         if (GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f, Screen.width / 5f, Screen.height / 10f), NewGame, ""))
         {
-           
+			GameManager gm = GameObject.FindObjectOfType<GameManager>();
+			gm.inMainMenu = false;
+			gm.TotalReset();
+			gm.loadComponents();
+
             Application.LoadLevel(Level1Round1);
+
         }
         GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f + Screen.height * 0.11f, Screen.width / 5f, Screen.height / 10f), Continue, "");
         GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f + Screen.height * 0.11f * 2f, Screen.width / 5f, Screen.height / 10f), ChooseLevel, "");

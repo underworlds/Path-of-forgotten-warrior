@@ -18,8 +18,10 @@ public class GameManager : MonoBehaviour {
 	private GameObject character;
 	private Animator anim;
 
+	//loading values
 	private bool load = true;
 	private int loadCounter = 0;
+	public bool inMainMenu { get; set; }
 
 	//FIGHTING VALUES
 	private float damage = 0.2f;
@@ -132,13 +134,16 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-        camera.GetComponent<CameraController>().Lifes = lifes;
-        camera.GetComponent<CameraController>().Points = points;
-        camera.GetComponent<CameraController>().HP = hp;
+		if(!inMainMenu){
+			camera.GetComponent<CameraController>().Lifes = lifes;
+			camera.GetComponent<CameraController>().Points = points;
+			camera.GetComponent<CameraController>().HP = hp;
+		}
+        
 	}
 
 
-
+//--------------------------------------------------------------
 
 	public void AddCoin(){
 		coins++;		
@@ -164,15 +169,17 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+//--------LOADING LEVEL WORK WITH VALUES METHODS -------------
+
 	/**
 	 * This method will be used, when player hit the change scene trigger.
 	 * Current values of points coins will be stored to cpPoints, cpCoins values;
 	 * So every time from now, when player lost his life, he will respawn with this checkpoint values.
 	 */
 	public void Checkpoint(){
-		load=true;
 		cpCoins = coins;
 		cpPoints = points;
+		loadComponents();
 	} 
 
 	public void ResetCollectedValues(){
@@ -188,6 +195,13 @@ public class GameManager : MonoBehaviour {
 	public void TotalReset(){
 		this.Start ();
 	}
+
+	public void loadComponents(){
+		load = true;
+	}
+
+
+//---------------------TEXT UPDATE----------------------
 
 	void TextUpdate(){
 		if(scoreSheetText != null){
@@ -257,16 +271,15 @@ private IEnumerator Die(){
 	if((lifes) == 0){
 			TotalReset();
 			isDead = false;
-			load = true;
+			loadComponents();
 			Application.LoadLevel("MainMenu");
 	}else{
 			ResetCollectedValues();
 			isDead = false;
-			load = true;
+			loadComponents();
 			Application.LoadLevel(Application.loadedLevel);
 	}
 }
-
 
 
 
