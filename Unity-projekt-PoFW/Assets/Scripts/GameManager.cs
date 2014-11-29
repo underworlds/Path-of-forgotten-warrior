@@ -263,20 +263,28 @@ public class GameManager : MonoBehaviour {
 //if you move with animation sample you have to change this
 
 private IEnumerator Die(){
+	GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = false;
+	GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = false;
 	anim.SetBool("die",true);
 	yield return new WaitForSeconds(1.273f);
 	
+
+
 	RemoveOneLife();
 	Destroy(character.gameObject);
 	if((lifes) == 0){
 			TotalReset();
 			isDead = false;
 			loadComponents();
+			GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = true;
+			GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel("MainMenu");
 	}else{
 			ResetCollectedValues();
 			isDead = false;
 			loadComponents();
+			GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = true;
+			GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel(Application.loadedLevel);
 	}
 }

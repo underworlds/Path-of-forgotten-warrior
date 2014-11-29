@@ -11,6 +11,7 @@ public class TrapAI : MonoBehaviour {
     {
         right = 1f;
     }
+
     void OnTriggerEnter2D(Collider2D obj)
     {
 

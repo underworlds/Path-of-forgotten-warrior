@@ -87,10 +87,7 @@ public class CharacterFighting : MonoBehaviour {
 
 			//we have to wait for throw animation before throw
 			StartCoroutine(ThrowSpear());
-
-
-		}
-		if(Input.GetKeyUp(KeyCode.D)){
+		}else{
 			anim.SetBool ("throw",false);
 		}
 	}
