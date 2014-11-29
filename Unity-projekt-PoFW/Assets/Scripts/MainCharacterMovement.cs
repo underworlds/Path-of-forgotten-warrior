@@ -33,12 +33,18 @@ public class MainCharacterMovement : MonoBehaviour {
 	//Animator
 	private Animator anim;
 
+	// moving direction
+	private float move;
+
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
 		if(anim == null){
 			print("There is no animator");
 		}
+
+
 	}
 
 	void Update(){
@@ -52,8 +58,7 @@ public class MainCharacterMovement : MonoBehaviour {
 
 
 	void FixedUpdate(){
-
-		float move = Input.GetAxis ("Horizontal");
+		move = Input.GetAxis ("Horizontal");
 
 		anim.SetFloat ("Speed", Mathf.Abs (move));
 			
@@ -86,8 +91,5 @@ public class MainCharacterMovement : MonoBehaviour {
 		theScale.x *= -1;						// flip x axis	
 		transform.localScale = theScale;		//get it back to local scale 
 
-	}
-	
-	
-	
+	}	
 }
