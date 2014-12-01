@@ -56,8 +56,10 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundControl.cs" />
      <Compile Include="Assets\Scripts\MainCharacterMovement.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\BestScoreManager.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\ChooseLevelManager.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\CreditsManager.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\HelpManager.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\MenuCameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\MoveSpear.cs" />
      <Compile Include="Assets\Scripts\RestartTrigger.cs" />
