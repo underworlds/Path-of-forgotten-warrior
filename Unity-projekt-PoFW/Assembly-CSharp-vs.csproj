@@ -50,14 +50,15 @@
      <Compile Include="Assets\Scripts\CameraTriggerScript.cs" />
      <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\CharacterFighting.cs" />
-     <Compile Include="Assets\Scripts\ChooseLevelManager.cs" />
      <Compile Include="Assets\Scripts\CoinCollect.cs" />
      <Compile Include="Assets\Scripts\DialogScript.cs" />
      <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundControl.cs" />
      <Compile Include="Assets\Scripts\MainCharacterMovement.cs" />
-     <Compile Include="Assets\Scripts\MenuCameraBehaviour.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\ChooseLevelManager.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\CreditsManager.cs" />
+     <Compile Include="Assets\Scripts\MenuScripts\MenuCameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\MoveSpear.cs" />
      <Compile Include="Assets\Scripts\RestartTrigger.cs" />
      <Compile Include="Assets\Scripts\TrapAI.cs" />
