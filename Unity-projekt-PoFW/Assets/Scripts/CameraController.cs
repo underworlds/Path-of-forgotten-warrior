@@ -109,8 +109,14 @@ public class CameraController : MonoBehaviour {
             {
                 isGamePaused = false;
             }
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 2f, Screen.width / 5f, Screen.height / 10f), BestScore, "");
-            GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 3f, Screen.width / 5f, Screen.height / 10f), Help, "");
+            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 2f, Screen.width / 5f, Screen.height / 10f), BestScore, ""))
+            {
+                Application.LoadLevel("BestScore");
+            }
+            if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 3f, Screen.width / 5f, Screen.height / 10f), Help, ""))
+            {
+                Application.LoadLevel("Help");
+            }
 
             if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Return, ""))
             {

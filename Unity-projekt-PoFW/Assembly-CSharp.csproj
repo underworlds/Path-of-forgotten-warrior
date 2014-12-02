@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\MenuScripts\MenuCameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\MoveSpear.cs" />
      <Compile Include="Assets\Scripts\RestartTrigger.cs" />
+     <Compile Include="Assets\Scripts\SaveXML.cs" />
      <Compile Include="Assets\Scripts\TrapAI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

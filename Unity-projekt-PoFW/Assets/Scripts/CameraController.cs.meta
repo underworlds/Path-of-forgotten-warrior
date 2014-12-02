@@ -2,7 +2,17 @@ fileFormatVersion: 2
 guid: b3c776f146a8b724890e763879e4144d
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - HealthBarLimits: {fileID: 2800000, guid: edef2e69197912a4eb659f815d056d0f, type: 3}
+  - HealthBar: {fileID: 2800000, guid: 363ff4592070cdf459fb06e9f6024ddb, type: 3}
+  - Helmets: {fileID: 2800000, guid: e28fc7d5abcb449459137be7d8dc71da, type: 3}
+  - ScoreLimits: {fileID: 2800000, guid: af9685cedb5a93f44b0ba49708cebc35, type: 3}
+  - MenuClip: {fileID: 8300000, guid: 3251017fff24dc844ad7e79d28c72c1d, type: 3}
+  - GameClip: {fileID: 8300000, guid: 294f78387df564049b3485daf7fb9d8c, type: 3}
+  - Continue: {fileID: 2800000, guid: ada727d8435fb1d41a8da806f21dc899, type: 3}
+  - BestScore: {fileID: 2800000, guid: a00b084e91647d34788322a7752f50e9, type: 3}
+  - Help: {fileID: 2800000, guid: d4eaa2127a9970d4ab24d38903fa847b, type: 3}
+  - Return: {fileID: 2800000, guid: 85221e1b5a5fb8547a46530940c944c7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
