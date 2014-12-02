@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour {
 
 	void TextUpdate(){
 		if(scoreSheetText != null){
-            scoreSheetText.text = points + "";
+            scoreSheetText.text = "";
 /*
 			scoreSheetText.text = "Number of lifes: " + lifes +
 				"\nNumber of coins: " + coins +

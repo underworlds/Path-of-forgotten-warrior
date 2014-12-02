@@ -10,8 +10,12 @@ public class CameraController : MonoBehaviour {
     public Texture Helmets;
     public Texture ScoreLimits;
 
+    public Font FontForGui;
+
     public AudioClip MenuClip;
     public AudioClip GameClip;
+
+    public AudioSource AudioSourcePointer;
 
     public Texture Continue;
     public Texture BestScore;
@@ -59,9 +63,13 @@ public class CameraController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)){
             if (isGamePaused){
                 isGamePaused = false;
+                AudioSourcePointer.clip = GameClip;
+                AudioSourcePointer.Play();
             }
             else{
                 isGamePaused = true;
+                AudioSourcePointer.clip = MenuClip;
+                AudioSourcePointer.Play();
             }
         }
 	}
@@ -100,11 +108,16 @@ public class CameraController : MonoBehaviour {
        
         //score
         GUI.Button(new Rect(Screen.width * 0.24f, Screen.height * 0.21f, Screen.width * 0.1f, Screen.height * 0.1f), ScoreLimits, "");
-
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.white;
+        style.font = FontForGui;
+        style.fontSize = Screen.height / 28;
+        style.alignment = TextAnchor.MiddleCenter;
+        GUI.Label(new Rect(0.265f * Screen.width, 0.21f * Screen.height, Screen.width*0.05f, Screen.height*0.05f), Points + "", style);
         //ingame menu
         if (isGamePaused)
         {
-           // audio.PlayOneShot(MenuClip);
+            
             if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f, Screen.width / 5f, Screen.height / 10f), Continue, ""))
             {
                 isGamePaused = false;
@@ -128,7 +141,7 @@ public class CameraController : MonoBehaviour {
 
         else
         {
-           // audio.PlayOneShot(GameClip);
+            
         }
     }
 
