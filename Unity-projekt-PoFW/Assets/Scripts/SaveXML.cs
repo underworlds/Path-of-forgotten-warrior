@@ -17,7 +17,7 @@ public class SaveXML : MonoBehaviour {
         {
             using (var xmlWriter = XmlWriter.Create(stream, settings))
             {
-                xmls.Serialize(xmlWriter, new Player { Level = 5, Health = 500 }, ns);
+                xmls.Serialize(xmlWriter, new Player { Level = 1, Round = 1, Health = 500, Points = 0 }, ns);
             }
         }
 
@@ -41,5 +41,12 @@ public class Player
     public int Level { get; set; }
 
     [XmlElement]
+    public int Round { get; set; }
+
+    [XmlElement]
     public int Health { get; set; }
+
+    [XmlElement]
+    public int Points { get; set; }
+
 }

@@ -1,4 +1,6 @@
 ﻿<Player>
-  <Level>5</Level>
+  <Level>1</Level>
+  <Round>1</Round>
   <Health>500</Health>
+  <Points>0</Points>
 </Player>

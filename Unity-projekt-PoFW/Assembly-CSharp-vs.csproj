@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GroundControl.cs" />
+     <Compile Include="Assets\Scripts\LoadXML.cs" />
      <Compile Include="Assets\Scripts\MainCharacterMovement.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\BestScoreManager.cs" />
      <Compile Include="Assets\Scripts\MenuScripts\ChooseLevelManager.cs" />
