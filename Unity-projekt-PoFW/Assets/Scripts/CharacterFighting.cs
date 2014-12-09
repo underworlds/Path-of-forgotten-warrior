@@ -50,6 +50,7 @@ public class CharacterFighting : MonoBehaviour {
 			isShieldDown = true;
 
 		}else{
+
 			isShieldDown = false;
 			anim.SetBool("shieldCover",false);
 		}
