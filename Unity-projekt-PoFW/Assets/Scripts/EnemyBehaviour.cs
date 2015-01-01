@@ -2,6 +2,14 @@
 using System.Collections;
 
 public class EnemyBehaviour : MonoBehaviour {
+	/*
+	 * Enemies tags + (number of lifes)
+	 * Standard UNDEAD enemy: "Enemy" (1)
+	 * Advanced UNDEAD enemy: "EnemyAdv" (2)
+	 * Wraith enemy: "BigEnemy" (3)
+	 * 
+	 * 
+"	 */
 
     //parametre na urcenie orientacie nepriatela
     public BoxCollider2D colider;
@@ -20,7 +28,7 @@ public class EnemyBehaviour : MonoBehaviour {
     private float currentSpeed;
 
 
-    private Vector2 position = new Vector2(0, 0); //pozicie hrdiny
+    private Vector2 charPosition = new Vector2(0, 0); //pozicie hrdiny
     public bool IsHeroOnDesk { set; private get; } //premenna ci je hrdina na doske
     
 	//fields for attack
@@ -31,6 +39,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	private float timeToNextAttack = 0.0f;
 	private const float UNDEAD_ATTACK_TIME = 1.5f;
 	private bool enemyIsKilled = false;
+	private int enemyLifes = -1;
 
 	//Animation fields
 	Animator anim;
@@ -57,6 +66,9 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (gameManager== null) {
 			print ("Didnt find gameManager ...well fuck");		
 		}
+
+		//resolve how many lifes has enemy
+		GetEnemyStartLifes();
     }
 
     void FixedUpdate(){
@@ -66,7 +78,7 @@ public class EnemyBehaviour : MonoBehaviour {
             //kontrola ci nepriatel sa neotocil
             int check = 0;
             
-			if(Vector3.Distance(position,this.transform.position) < 0.5f){//vzdalenost k utoku, zastav a zautoc
+			if(Vector3.Distance(charPosition,this.transform.position) < 0.5f){//vzdalenost k utoku, zastav a zautoc
 				attacking = true;
 				StopMovement();
 				Attack();
@@ -78,7 +90,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
 
 			//zistuje na ktorej strane je hrdina - ci je hrdina nalavo
-            if (position.x<this.rigidbody2D.position.x && attacking == false){
+            if (charPosition.x<this.rigidbody2D.position.x && attacking == false){
 				//nastavenie rychlosti a animace pohybu
 				anim.SetBool("walk",true);
 				currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
@@ -96,7 +108,7 @@ public class EnemyBehaviour : MonoBehaviour {
             }
 
             //zistuje ci je hrdina napravo
-            if (position.x > this.rigidbody2D.position.x && attacking == false) {
+            if (charPosition.x > this.rigidbody2D.position.x && attacking == false) {
 				//nastavenie rychlosti a animace pohybu
 				anim.SetBool("walk",true);
 				currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
@@ -135,19 +147,28 @@ public class EnemyBehaviour : MonoBehaviour {
 	private void Attack(){
 		anim.SetBool("attack",true);
 
-		if( Vector3.Distance(position,this.transform.position) < 0.5f && !charFight.isShieldDown){
+		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown){
 			character.GetComponent<Animator>().SetBool("hit", true);
+			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
 			gameManager.CharacterReceiveHitFromUndead();
 		}
 	}
 
-	public void Killed(){
+	public void Hitted(){
 		if(!enemyIsKilled){
-			enemyIsKilled = true;
-			character.GetComponent<Animator>().SetBool("hit", false);
-			gameManager.CharacterKillEnemy();
+			enemyLifes--;
+			if(enemyLifes == 0){ //enemy ma alespon jeden zivot
+				enemyIsKilled = true;
+				character.GetComponent<Animator>().SetBool("hit", false);
+				gameManager.CharacterKillEnemy();
+				
+				StartCoroutine(UndeadDie());
+			}else{
+				//enemy ma alespon jeden zivot
+				//PREHREJ ANIMACI ZASAHU ENEMY
+			}
 
-			StartCoroutine(UndeadDie());
+
 		}
 	}
 
@@ -193,9 +214,11 @@ public class EnemyBehaviour : MonoBehaviour {
         }
         
 		if(!enemyIsKilled){
-        	this.position = position;
+        	this.charPosition = position;
 		}
     }
+
+
 
 
     //metoda na detekovanie hrdinu - moze nan zautocit
@@ -207,5 +230,33 @@ public class EnemyBehaviour : MonoBehaviour {
         }
 
     }
-    
+
+	/**
+	 * Tato metoda slouzi pri uvodnim spousteni scriptu k tomu,
+	 * aby zjistila kolik ma dany enemy zivotu
+	 * 
+	 * Enemies tags + (number of lifes)
+	 * Standard UNDEAD enemy: "Enemy" (1)
+	 * Advanced UNDEAD enemy: "EnemyAdv" (2)
+	 * Wraith enemy: "EnemyBig" (3)
+	 */
+	private void GetEnemyStartLifes(){
+		string t = this.tag;
+		//print("printing tag enemy: " + t);
+
+		switch(t){
+		case "Enemy":
+			enemyLifes = 1;
+			break;
+
+		case "EnemyAdv":
+			enemyLifes = 2;
+			break;
+		
+		case "EnemyBig":
+			enemyLifes = 3;
+			break;
+		}
+	}
+
 }

@@ -69,7 +69,7 @@ public class CharacterFighting : MonoBehaviour {
 
 			if(hit.collider != null){ 
 				if(hit.collider.tag == "Enemy" ){
-					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Killed();
+					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hitted();
 				}		
 			}else{
 				//print ("...Collider of hit was null");
@@ -113,7 +113,7 @@ public class CharacterFighting : MonoBehaviour {
 		if(hit.collider != null){ 
 
 			if(hit.collider.tag == "Enemy" ){
-				hit.collider.gameObject.GetComponent<EnemyBehaviour>().Killed();
+				hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hitted();
 			}		
 		}else{
 			//print ("...Collider of hit was null");

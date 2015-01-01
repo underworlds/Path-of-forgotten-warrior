@@ -14,6 +14,8 @@ using System.Collections;
 
 public class DialogScript : MonoBehaviour {
 
+	public GameObject character;
+
 	public GameObject dialogFrame; 
 	public Sprite[] dialogsSprites;
 
@@ -32,7 +34,13 @@ public class DialogScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		print("STARTING METHOD OF DIALOGS");
 
+
+		character = GameObject.FindGameObjectWithTag("Character");
+		if(character == null){
+			print ("There is no character");
+		}
 
 		dialogFrame = GameObject.Find("dialog1");
 		if(dialogFrame == null){
@@ -41,8 +49,10 @@ public class DialogScript : MonoBehaviour {
 
 		if(GameObject.Find("wraith") != null){
 			wraith = GameObject.Find("wraith").transform;
+			print("Find wraith");
 		}else{
 			wraith = null;
+			print("DID not find wraith");
 		}
 
 
@@ -72,27 +82,12 @@ public class DialogScript : MonoBehaviour {
 		}
 	}
 
-	//this code show him last dialog card (which is empty)
-	//makes class of movement and fighting enabled  and then destroy itself
-	private void endDialogs(){
-		//print("Set dialog to empty one");
-		dialogFrame.GetComponent<SpriteRenderer>().sprite = dialogsSprites[dialogsSprites.Length-1];
-		//print("Release animator");
-		anim.SetBool("Idle",false);
-		//print("Moving");
-		GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = true;
-		//print ("Fight");
-		GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = true;
-		//print ("Destroy trigger");
-		Destroy (this.gameObject);
-		//print ("destroy dialog");
-		Destroy (dialogFrame);
-	}
+
 
 	//do some javadoc here
 	void OnTriggerEnter2D(Collider2D obj){
 		if (obj.gameObject.tag.Equals("Character") && !triggerhit){
-			//find character and writh game objects
+			//find character and wraith game objects
 			GameObject character = obj.gameObject;
 
 
@@ -111,8 +106,8 @@ public class DialogScript : MonoBehaviour {
 			ClearAnimator();
 
 			//disable moving of character
-			GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = false;
-			GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = false;
+			character.GetComponent<MainCharacterMovement>().enabled = false;
+			character.GetComponent<CharacterFighting>().enabled = false;
 
 			//start the update code
 			triggerhit = true;	//so there will be no trigger entries
@@ -121,6 +116,35 @@ public class DialogScript : MonoBehaviour {
 		}
 
 	}
+
+	//this code show him last dialog card (which is empty)
+	//makes class of movement and fighting enabled  and then destroy itself
+	private void endDialogs(){
+		//print("Set dialog to empty one");
+		dialogFrame.GetComponent<SpriteRenderer>().sprite = dialogsSprites[dialogsSprites.Length-1];
+		//print("Release animator");
+		anim.SetBool("Idle",false);
+		//print("Moving");
+		character.GetComponent<MainCharacterMovement>().enabled = true;
+		//print ("Fight");
+		character.GetComponent<CharacterFighting>().enabled = true;
+		
+		//enable scripts for things next to frame
+		if(wraith != null){
+			wraith.GetComponent<EnemyBehaviour>().enabled = true;
+		}
+		
+		
+		//print ("Destroy trigger");
+		Destroy (this.gameObject);
+		//print ("destroy dialog");
+		Destroy (dialogFrame);
+	}
+
+
+
+
+
 
 
 	//stop all moving of chracter used before disabling moving scripts
@@ -138,6 +162,9 @@ public class DialogScript : MonoBehaviour {
 	private void setWhatIsNextToFrame(float charX){
 		if(wraith != null){
 			wraith.position = new Vector3(charX+wraithFrameOffset,wraith.transform.position.y,wraith.transform.position.z);
+
+			//turn off wraiths enemy behaviour
+			wraith.GetComponent<EnemyBehaviour>().enabled = false;
 		}
 	}
 
