@@ -34,7 +34,7 @@ public class DialogScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		print("STARTING METHOD OF DIALOGS");
+		//print("STARTING METHOD OF DIALOGS");
 
 
 		character = GameObject.FindGameObjectWithTag("Character");
@@ -49,7 +49,7 @@ public class DialogScript : MonoBehaviour {
 
 		if(GameObject.Find("wraith") != null){
 			wraith = GameObject.Find("wraith").transform;
-			print("Find wraith");
+			//print("Find wraith");
 		}else{
 			wraith = null;
 			print("DID not find wraith");

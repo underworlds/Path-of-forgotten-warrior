@@ -4,19 +4,35 @@ using System.Collections;
 public class MoveSpear : MonoBehaviour {
 
 	private const float MOVE_SPEED = 5.0f;
-	private Transform character;
+	//private Transform character;
+	private GameObject character;
 	private MainCharacterMovement mcm;
+	private CharacterFighting cf;
 
 	private int isFacingRight = 1;
 
 
 	// Use this for initialization
 	void Start (){
+		character = GameObject.FindGameObjectWithTag("Character");
+		if (character == null) {
+			print ("Didnt find character ...well fuck");		
+		}else{
+			mcm = character.gameObject.GetComponent<MainCharacterMovement>();
 
-		mcm = GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>();
-		if (mcm == null) {
-			print ("Didnt find mcm component ...well fuck");		
-		}  
+
+			if (mcm == null) {
+				print ("Didnt find mcm component ...well fuck");		
+			}
+
+			cf = character.GetComponent<CharacterFighting>();
+			if (mcm == null) {
+				print ("Didnt find mcm component ...well fuck");		
+			}
+
+		}
+
+		  
 
 		//asking characters param isFacingRight if true or false
 		//and do this only once, at START()
@@ -47,6 +63,10 @@ public class MoveSpear : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D collision){
 		print ("Spear hit something " + collision.gameObject.tag);
+		//WRITE THE HIT TO THE ENEMY
+		collision.gameObject.GetComponent<EnemyBehaviour>().Hit();
+
+
 		Destroy(this.gameObject);
 	}
 

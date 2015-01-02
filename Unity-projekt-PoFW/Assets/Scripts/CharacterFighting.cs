@@ -19,6 +19,8 @@ public class CharacterFighting : MonoBehaviour {
 	private MainCharacterMovement mcm;
 	public bool isShieldDown = false;
 
+	private string tagOfHitCollider = "";
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
@@ -68,8 +70,8 @@ public class CharacterFighting : MonoBehaviour {
 			//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*SLASH_DISTANCE), firePoint.position.y)));
 
 			if(hit.collider != null){ 
-				if(hit.collider.tag == "Enemy" ){
-					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hitted();
+				if(hit.collider.tag == "Enemy" || hit.collider.tag == "EnemyAdv" || hit.collider.tag == "EnemyBig" ){
+					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hit();
 				}		
 			}else{
 				//print ("...Collider of hit was null");
@@ -104,20 +106,21 @@ public class CharacterFighting : MonoBehaviour {
 		yield return new WaitForSeconds(0.520f);
 
 		// cast ray to see if we hit enemy
-		RaycastHit2D hit = Physics2D.Raycast(firePointPosition,throwDirection, THROW_DISTANCE, whatToHit);
+		//RaycastHit2D hit = Physics2D.Raycast(firePointPosition,throwDirection, THROW_DISTANCE, whatToHit);
 		//show user the spear and do some magic
 		ThrowEffect();
 		//just for debugging purposes	
 		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
 
+		/* THIS IS NOW SOLVED IN MOVESPEAR SCRIPT
 		if(hit.collider != null){ 
 
-			if(hit.collider.tag == "Enemy" ){
-				hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hitted();
+			if(hit.collider.tag == "Enemy" || hit.collider.tag == "EnemyAdv" || hit.collider.tag == "EnemyBig" ){
+				hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hit();
 			}		
 		}else{
 			//print ("...Collider of hit was null");
-		}
+		}*/
 
 	}
 
@@ -134,6 +137,10 @@ public class CharacterFighting : MonoBehaviour {
 		}else{
 			return -1;
 		}
+	}
+
+	public void HitFromSpear(string tagOfHitCollider){
+
 	}
 
 }

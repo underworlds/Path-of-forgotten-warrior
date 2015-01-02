@@ -31,6 +31,8 @@ public class GroundControl : MonoBehaviour {
         
         
     }
+
+
     //zistuje poziciu danych objektov
     void OnCollisionStay2D(Collision2D coll)
     {
@@ -51,6 +53,7 @@ public class GroundControl : MonoBehaviour {
         
         //Destroy(coll.gameObject);
     }
+
     //zistuje ktore objekty sa uz nedotikaju plosiny
     void OnCollisionExit2D(Collision2D collision)
     {

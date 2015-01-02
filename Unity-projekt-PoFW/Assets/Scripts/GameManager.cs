@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour {
 
 		if(load){
 			//Finding camera
-			print ("LOADING");		
+			//print ("LOADING");		
 			camera = GameObject.FindObjectOfType<Camera>().transform;
 			if (camera == null) {
 				print ("Didnt find Camera ...well fuck");		
@@ -241,7 +241,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void CharacterKillEnemy(){
-		AddPoints(STANDART_ENEMY_STR);	
+		AddPoints(STANDART_ENEMY_STR);
+
 	}
 
 

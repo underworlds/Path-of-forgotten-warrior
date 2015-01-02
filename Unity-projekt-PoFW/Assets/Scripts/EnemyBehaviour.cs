@@ -85,7 +85,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			}else{
 				attacking = false;
 				anim.SetBool("attack",false);
-				character.GetComponent<Animator>().SetBool("hit", false);
+				//character.GetComponent<Animator>().SetBool("hit", false);
 			}
 
 
@@ -147,35 +147,66 @@ public class EnemyBehaviour : MonoBehaviour {
 	private void Attack(){
 		anim.SetBool("attack",true);
 
-		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown){
-			character.GetComponent<Animator>().SetBool("hit", true);
+		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown && IsHeroOnDesk){
+			character.GetComponent<Animator>().SetTrigger("hitTrigger");
 			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
 			gameManager.CharacterReceiveHitFromUndead();
 		}
 	}
 
-	public void Hitted(){
+	public void Hit(){
+		//print("Enemy was hit before decrease he have " + enemyLifes+" lifes.");
 		if(!enemyIsKilled){
 			enemyLifes--;
 			if(enemyLifes == 0){ //enemy ma alespon jeden zivot
 				enemyIsKilled = true;
+				//print("Enemy was killed");
 				character.GetComponent<Animator>().SetBool("hit", false);
 				gameManager.CharacterKillEnemy();
-				
-				StartCoroutine(UndeadDie());
+				StartCoroutine(EnemyDie());
 			}else{
 				//enemy ma alespon jeden zivot
-				//PREHREJ ANIMACI ZASAHU ENEMY
+				//PREHREJ ANIMACI ZASAHU ENEMY, zatim jen pro wraitha
+				if(this.tag == "EnemyBig"){
+					//print("Enemy recieved hit and survive");
+					StartCoroutine(EnemyHit());
+				}
 			}
-
-
 		}
 	}
 
-	private IEnumerator UndeadDie(){
+
+	private IEnumerator EnemyDie(){
+		//play animation 
 		anim.SetBool("die",true);
-		yield return new WaitForSeconds(1.200f);
+		//wait until the animation is played
+		float timeToWait = GetWaitingTimeForEnemyDie(this.tag);
+		yield return new WaitForSeconds(timeToWait);
+		//destroy enemy
 		Destroy(this.gameObject);
+	}
+
+	private IEnumerator EnemyHit(){
+		//stop enemy, say him HERO is not on the desk
+		if(IsHeroOnDesk == false){//hero is not attacking from the desk
+			//play animation
+			anim.SetTrigger("hitTrigger");
+			
+			//wait until tha animation is played
+			yield return new WaitForSeconds(1.0f);
+
+		}else{//hero is attacking from the desk
+			IsHeroOnDesk = false;
+
+			//play animation
+			anim.SetTrigger("hitTrigger");
+			
+			//wait until tha animation is played
+			yield return new WaitForSeconds(1.0f);
+			
+			//let tell the enemey if the hero is on the desk or not 
+			IsHeroOnDesk = true;
+		}
 	}
 
     //sposob vypoctu rychlosti nepriatela
@@ -201,6 +232,8 @@ public class EnemyBehaviour : MonoBehaviour {
         theScale.x *= -1;						
         transform.localScale = theScale;		
     }
+
+
     //metoda na urcenie pozicie hrdinu
     public void setHeroPosition(Vector2 position)
     {
@@ -257,6 +290,27 @@ public class EnemyBehaviour : MonoBehaviour {
 			enemyLifes = 3;
 			break;
 		}
+	}
+
+
+	private float GetWaitingTimeForEnemyDie(string tag){
+		float waitingTime = 0.0f;
+
+		switch(tag){
+		case "Enemy":
+			waitingTime = 1.200f;
+			break;
+			
+		case "EnemyAdv":
+			waitingTime = 1.200f;
+			break;
+			
+		case "EnemyBig":
+			waitingTime = 1.571f;
+			break;
+		}
+
+		return waitingTime;
 	}
 
 }
