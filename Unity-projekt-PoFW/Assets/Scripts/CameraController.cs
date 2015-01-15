@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour {
     public Font FontForGui;
 
     public AudioClip MenuClip;
-  //  public AudioClip GameClip;
+    public AudioClip GameClip;
 
     public AudioSource AudioSourcePointer;
 
@@ -63,12 +63,14 @@ public class CameraController : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)){
             if (isGamePaused){
                 isGamePaused = false;
-                AudioSourcePointer.mute = true;
+                AudioSourcePointer.clip = GameClip;
+                AudioSourcePointer.Play();
+               // AudioSourcePointer.mute = true;
             }
             else{
                 isGamePaused = true;
                 AudioSourcePointer.clip = MenuClip;
-                AudioSourcePointer.mute = false;
+               // AudioSourcePointer.mute = false;
                 AudioSourcePointer.Play();
             }
         }

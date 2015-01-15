@@ -3,7 +3,8 @@ using UnityEngine;
 using System.Collections;
 
 public class TrapAI : MonoBehaviour {
-	private const float ROTATION_SPEED = 400.0f;
+
+    private const float ROTATION_SPEED = 300.0f;
 
     private float right;
     // Use this for initialization
