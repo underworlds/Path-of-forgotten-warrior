@@ -17,12 +17,15 @@ public class CharacterFighting : MonoBehaviour {
 	public LayerMask whatToHit;
 	public Transform spearPrefab;
 	private MainCharacterMovement mcm;
-	public bool isShieldDown = false;
+	public bool isShieldDown;
+    public bool isTimeToThrowSpear;
 
 	private string tagOfHitCollider = "";
 
 	// Use this for initialization
 	void Start () {
+        isShieldDown = false;
+        isTimeToThrowSpear = true;
 		anim = GetComponent<Animator>();
 		if(anim == null){
 			print("There is no animator");
@@ -85,10 +88,11 @@ public class CharacterFighting : MonoBehaviour {
 		}
 
 		//THROW
-		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded)){	
+		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded) && isTimeToThrowSpear){	
 			anim.SetBool ("throw",true);
 
 			//we have to wait for throw animation before throw
+            isTimeToThrowSpear = false;
 			StartCoroutine(ThrowSpear());
 		}else{
 			anim.SetBool ("throw",false);
@@ -121,7 +125,8 @@ public class CharacterFighting : MonoBehaviour {
 		}else{
 			//print ("...Collider of hit was null");
 		}*/
-
+        yield return new WaitForSeconds(1f);
+        isTimeToThrowSpear = true;
 	}
 
 

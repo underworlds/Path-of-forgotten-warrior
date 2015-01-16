@@ -14,7 +14,9 @@ public class AudioForHero : MonoBehaviour {
     public AudioSource AudioSourcePointer;
     private bool standing;
     private int stateOfKeys;
-    
+
+    private Transform character;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,11 +29,12 @@ public class AudioForHero : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        Debug.Log(AudioSourcePointer.clip.name);
+        character = GameObject.FindGameObjectWithTag("Character").transform;
+        bool timeToThrow = character.GetComponent<CharacterFighting>().isTimeToThrowSpear;
+        Debug.Log("1-------------------"+timeToThrow);
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow))
         {
-
+            Debug.Log(timeToThrow);
             if (stateOfKeys > 1)
             {
 
@@ -43,14 +46,16 @@ public class AudioForHero : MonoBehaviour {
                     AudioSourcePointer.Play();
                     standing = false;
                 }
-                if (Input.GetKey(KeyCode.D) && AudioSourcePointer.clip != SpearAudio)
-                {
-                    AudioSourcePointer.loop = true;
-                    AudioSourcePointer.clip = SpearAudio;
-                    AudioSourcePointer.volume = 1f;
-                    AudioSourcePointer.Play();
-                    standing = false;
-                }
+               
+                if (Input.GetKey(KeyCode.D) && AudioSourcePointer.clip != SpearAudio && timeToThrow)
+                 {
+                     
+                     AudioSourcePointer.loop = false;
+                     AudioSourcePointer.clip = SpearAudio;
+                     AudioSourcePointer.volume = 1f;
+                     AudioSourcePointer.Play();
+                     standing = false;
+                 }
                 if (Input.GetKey(KeyCode.LeftArrow) && AudioSourcePointer.clip != RunningAudio)
                 {
                     AudioSourcePointer.loop = true;
@@ -72,10 +77,10 @@ public class AudioForHero : MonoBehaviour {
 
         if (Input.anyKeyDown)
         {
-            AudioSourcePointer.loop = true;
+            Debug.Log(timeToThrow);
             if (Input.GetKeyDown(KeyCode.A))
             {
-                
+                AudioSourcePointer.loop = true;
                 AudioSourcePointer.clip = SwordAudio;
                 stateOfKeys++;
                 AudioSourcePointer.volume = 1f;
@@ -91,9 +96,10 @@ public class AudioForHero : MonoBehaviour {
                 AudioSourcePointer.Play();
                 standing = false;
             }
-            if (Input.GetKeyDown(KeyCode.D))
+           // Debug.Log("timer " + character.GetComponent<CharacterFighting>().isTimeToThrowSpear);
+            if (Input.GetKeyDown(KeyCode.D) && timeToThrow)
             {
-                
+                AudioSourcePointer.loop = false;
                 AudioSourcePointer.clip = SpearAudio;
                 stateOfKeys++;
                 AudioSourcePointer.volume = 1f;
@@ -102,7 +108,7 @@ public class AudioForHero : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                
+                AudioSourcePointer.loop = true;
                 AudioSourcePointer.clip = RunningAudio;
                 stateOfKeys++;
                 AudioSourcePointer.volume = 1f;
@@ -111,7 +117,7 @@ public class AudioForHero : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                
+                AudioSourcePointer.loop = true;
                 AudioSourcePointer.clip = RunningAudio;
                 stateOfKeys++;
                 AudioSourcePointer.volume = 1f;
@@ -133,13 +139,23 @@ public class AudioForHero : MonoBehaviour {
         {
             stateOfKeys = 0;
             standing = true;
+            if ((AudioSourcePointer.clip == ShieldAudio || AudioSourcePointer.clip == SpearAudio || AudioSourcePointer.clip == JumpAudio || AudioSourcePointer.clip == DyingAudio) && AudioSourcePointer.isPlaying)
+            {
 
-            AudioSourcePointer.clip = HearthBeating;
-            AudioSourcePointer.volume = 0f;
-            AudioSourcePointer.Play();
-
+            }
+            else
+            {
+                AudioSourcePointer.clip = HearthBeating;
+                AudioSourcePointer.volume = 0f;
+                AudioSourcePointer.Play();
+            }
         }
         
 	}
-
+    public void deathSound()
+    {
+        AudioSourcePointer.clip = DyingAudio;
+        AudioSourcePointer.volume = 1f;
+        AudioSourcePointer.Play();
+    }
 }

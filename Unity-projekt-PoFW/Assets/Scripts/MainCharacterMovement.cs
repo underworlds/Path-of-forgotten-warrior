@@ -12,7 +12,7 @@ public class MainCharacterMovement : MonoBehaviour {
 	private float maxSpeed = 2.5f;
 	
 	//vyska skoku ...dal bych asi mene, neco kolem 75
-	private int jumpHeight = 250;
+	private int jumpHeight = 300;
 	
 	//komponenta pro detekci, zda se nachazim na zemi
 	public Transform groundCheck;
