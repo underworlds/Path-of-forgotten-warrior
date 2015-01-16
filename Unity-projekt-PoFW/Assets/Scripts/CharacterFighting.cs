@@ -92,7 +92,7 @@ public class CharacterFighting : MonoBehaviour {
 			anim.SetBool ("throw",true);
 
 			//we have to wait for throw animation before throw
-            isTimeToThrowSpear = false;
+           
 			StartCoroutine(ThrowSpear());
 		}else{
 			anim.SetBool ("throw",false);
@@ -106,7 +106,7 @@ public class CharacterFighting : MonoBehaviour {
 		Vector2 throwDirection = (new Vector2(firePoint.position.x+(isFR*10.0f), firePoint.position.y) - firePointPosition);
 		//print (throwDirection);
 		anim.SetBool ("throw",true);
-
+        isTimeToThrowSpear = false;
 		yield return new WaitForSeconds(0.520f);
 
 		// cast ray to see if we hit enemy

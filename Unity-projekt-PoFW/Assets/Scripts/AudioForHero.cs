@@ -14,6 +14,7 @@ public class AudioForHero : MonoBehaviour {
     public AudioSource AudioSourcePointer;
     private bool standing;
     private int stateOfKeys;
+    public bool timeToThrow;
 
     private Transform character;
 
@@ -30,11 +31,9 @@ public class AudioForHero : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         character = GameObject.FindGameObjectWithTag("Character").transform;
-        bool timeToThrow = character.GetComponent<CharacterFighting>().isTimeToThrowSpear;
-        Debug.Log("1-------------------"+timeToThrow);
+        timeToThrow = character.GetComponent<CharacterFighting>().isTimeToThrowSpear;
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.UpArrow))
         {
-            Debug.Log(timeToThrow);
             if (stateOfKeys > 1)
             {
 
@@ -47,7 +46,7 @@ public class AudioForHero : MonoBehaviour {
                     standing = false;
                 }
                
-                if (Input.GetKey(KeyCode.D) && AudioSourcePointer.clip != SpearAudio && timeToThrow)
+              /*  if (Input.GetKey(KeyCode.D) && AudioSourcePointer.clip != SpearAudio && timeToThrow)
                  {
                      
                      AudioSourcePointer.loop = false;
@@ -55,7 +54,7 @@ public class AudioForHero : MonoBehaviour {
                      AudioSourcePointer.volume = 1f;
                      AudioSourcePointer.Play();
                      standing = false;
-                 }
+                 }*/
                 if (Input.GetKey(KeyCode.LeftArrow) && AudioSourcePointer.clip != RunningAudio)
                 {
                     AudioSourcePointer.loop = true;
@@ -77,7 +76,6 @@ public class AudioForHero : MonoBehaviour {
 
         if (Input.anyKeyDown)
         {
-            Debug.Log(timeToThrow);
             if (Input.GetKeyDown(KeyCode.A))
             {
                 AudioSourcePointer.loop = true;
@@ -95,10 +93,11 @@ public class AudioForHero : MonoBehaviour {
                 AudioSourcePointer.volume = 1f;
                 AudioSourcePointer.Play();
                 standing = false;
-            }
-           // Debug.Log("timer " + character.GetComponent<CharacterFighting>().isTimeToThrowSpear);
+            } 
+           // Debug.Log(timeToThrow);
             if (Input.GetKeyDown(KeyCode.D) && timeToThrow)
             {
+                Debug.Log("ItHappened");
                 AudioSourcePointer.loop = false;
                 AudioSourcePointer.clip = SpearAudio;
                 stateOfKeys++;
