@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class ChangeScene : MonoBehaviour {
 	private GameManager gameManager;
@@ -30,6 +32,7 @@ public class ChangeScene : MonoBehaviour {
 
 	private const string THE_END = "TheEnd";
 
+    private int SaveScoreCount = 0;
 
 	void Start(){
 		gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -43,7 +46,7 @@ public class ChangeScene : MonoBehaviour {
 			Tady by mela byt vyresena change scene animace... 
 			Par pokusu bylo ale nepodarilo se.
 		 */
-
+        SaveScore();
 
 		string loadedLevel = Application.loadedLevelName;
 		switch (loadedLevel)
@@ -82,11 +85,12 @@ public class ChangeScene : MonoBehaviour {
 			break;
 		case LVL_02_RND_04:
 			gameManager.Checkpoint();
-			Application.LoadLevel(LVL_03_RND_01);
+			//Application.LoadLevel(LVL_03_RND_01);
+            Application.LoadLevel(THE_END);
 			break;
 
 		//----------------LEVEL 3-------------
-		case LVL_03_RND_01:
+	/*	case LVL_03_RND_01:
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_03_RND_02);
 			break;
@@ -101,10 +105,10 @@ public class ChangeScene : MonoBehaviour {
 		case LVL_03_RND_04:
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_04_RND_01);
-			break;
+			break;*/
 
 		//----------------LEVEL 4-------------
-		case LVL_04_RND_01:
+	/*	case LVL_04_RND_01:
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_04_RND_02);
 			break;
@@ -119,8 +123,22 @@ public class ChangeScene : MonoBehaviour {
 		case LVL_04_RND_04:
 			gameManager.Checkpoint();
 			Application.LoadLevel(THE_END);
-			break;
+			break;*/
 		}
 
 	}
+
+    void SaveScore()
+    {
+        SaveScoreCount++;
+        if (SaveScoreCount == 1)
+        {
+            string loadedLevel = Application.loadedLevelName;
+            Player playerTemp = LoadXML.loadScore(loadedLevel);
+            playerTemp.AddScore(gameManager.GetComponent<GameManager>().points, DateTime.Now);
+            SaveXML.Save(loadedLevel, playerTemp);
+        }
+        
+        
+    }
 }

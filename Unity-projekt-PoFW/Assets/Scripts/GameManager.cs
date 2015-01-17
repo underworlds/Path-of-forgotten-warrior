@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
 	//CHARACTERS VALUES
 	private	static int lifes;
 	private static int coins;
-	private static int points;
+	public int points;
 	private static int hp; //healthpoints
 
 	//CHECKPOINTS VALUES 
