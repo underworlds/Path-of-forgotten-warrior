@@ -62,8 +62,13 @@ public class ChangeScene : MonoBehaviour {
 			Application.LoadLevel(LVL_01_RND_03);
 			break;
 		case LVL_01_RND_03:
-			gameManager.Checkpoint();
-			Application.LoadLevel(LVL_01_RND_04);
+			if(GameObject.FindGameObjectWithTag("EnemyBig") == null){
+				gameManager.Checkpoint();
+				Application.LoadLevel(LVL_01_RND_04);
+			}else{
+				//print("You have to kill wraith");
+			}
+
 			break;
 		case LVL_01_RND_04:
 			gameManager.Checkpoint();

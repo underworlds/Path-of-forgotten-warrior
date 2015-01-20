@@ -88,16 +88,20 @@ public class CharacterFighting : MonoBehaviour {
 		}
 
 		//THROW
-		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded) && isTimeToThrowSpear){	
+		if(Input.GetKeyDown(KeyCode.D) && (mcm.isGrounded) && isTimeToThrowSpear /*&& (mcm.move == 0.0f)*/){	
+			mcm.canMove = false;
 			anim.SetBool ("throw",true);
 
 			//we have to wait for throw animation before throw
            
 			StartCoroutine(ThrowSpear());
 		}else{
+			//mcm.canMove = true;
 			anim.SetBool ("throw",false);
 		}
 	}
+
+
 
 	private IEnumerator ThrowSpear(){
 		int isFR = IsFRtoInt(GetComponent<MainCharacterMovement>().isFacingRight);
@@ -115,7 +119,7 @@ public class CharacterFighting : MonoBehaviour {
 		ThrowEffect();
 		//just for debugging purposes	
 		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
-
+		mcm.canMove = true;
 		/* THIS IS NOW SOLVED IN MOVESPEAR SCRIPT
 		if(hit.collider != null){ 
 
@@ -127,6 +131,7 @@ public class CharacterFighting : MonoBehaviour {
 		}*/
         yield return new WaitForSeconds(1f);
         isTimeToThrowSpear = true;
+
 	}
 
 
@@ -147,5 +152,6 @@ public class CharacterFighting : MonoBehaviour {
 	public void HitFromSpear(string tagOfHitCollider){
 
 	}
+
 
 }

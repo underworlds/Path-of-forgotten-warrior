@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
 	public bool inMainMenu { get; set; }
 
 	//FIGHTING VALUES
-	private float damage = 0.2f;
+	private float damage; //will be resolved based on enemy type
 	private float cumulateDamage = 0.0f;
 	private bool isDead = false;
 
@@ -45,13 +45,15 @@ public class GameManager : MonoBehaviour {
 	private const int STARTING_NUMBER_OF_COINS = 0;
 	private const int STARTING_NUMBER_OF_POINTS = 0;
 	private const int STARTING_NUMBER_OF_HP = 100;
-
+	//point values
 	private const int POINTS_PER_COIN = 10;
 	private const int POINTS_PER_STD_ENEMY = 20; //should be multiplied by level numer (eg 20 x 1...(level 1))
+	private const int POINTS_PER_BIG_ENEMY = 60; // std enemy has 1 life = 20pts, wraith has 3 lifes = 60pts
 
 	//strings to adding points
 	private const string COIN_STR = "coin";
-	private const string STANDART_ENEMY_STR = "enemy";
+	private const string STANDART_ENEMY_STR = "Enemy";
+	private const string BIG_ENEMY_STR = "EnemyBig";
 	//...
 
 	//SINGLETON CODE
@@ -157,6 +159,9 @@ public class GameManager : MonoBehaviour {
 		if(type == STANDART_ENEMY_STR){
 			points += POINTS_PER_STD_ENEMY; //SHOULD BE 20xLEVEL_NUMBER ... 
 		}
+		if(type == BIG_ENEMY_STR){
+			points += POINTS_PER_BIG_ENEMY; //60
+		}
 	}
 
 
@@ -166,7 +171,6 @@ public class GameManager : MonoBehaviour {
 
 	public void RemoveOneLife(){
 		lifes--;
-		
 	}
 
 //--------LOADING LEVEL WORK WITH VALUES METHODS -------------
@@ -225,11 +229,11 @@ public class GameManager : MonoBehaviour {
 //-------------------fighting methods--------------------------
 
 
-	public void CharacterReceiveHitFromUndead(){
-
+	public void CharacterReceiveHitFromEnemy(string enemyTag){
+		damage = resolveEnemyDamage(enemyTag);
 		cumulateDamage += damage;
 
-		if(Mathf.Abs(cumulateDamage - 1.0f) < 0.09f){
+		if(cumulateDamage > 0.99f){
 			hp -= 1;
 			cumulateDamage = 0.0f;	
 		}
@@ -240,10 +244,22 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void CharacterKillEnemy(){
-		AddPoints(STANDART_ENEMY_STR);
+	public void CharacterKillEnemy(string enemyTag){
+			AddPoints(enemyTag);
+	}
+
+	private float resolveEnemyDamage(string enemyTag){
+		if(enemyTag == STANDART_ENEMY_STR){
+			return 0.2f;
+		}	
+		if(enemyTag == BIG_ENEMY_STR){
+			return 0.4f;
+		}else{
+			return 0.1f;
+		}
 
 	}
+
 
 
 
@@ -251,7 +267,7 @@ public class GameManager : MonoBehaviour {
 
 	public void killCharacter(){
 		hp = 0;
-		
+		print("Numer of lifes"+ lifes);
 		if(hp == 0 && !isDead){
 			isDead = true;
 			StartCoroutine(Die());
@@ -264,69 +280,32 @@ public class GameManager : MonoBehaviour {
 //if you move with animation sample you have to change this
 
 private IEnumerator Die(){
-	GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = false;
-	GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = false;
+	character.GetComponent<MainCharacterMovement>().enabled = false;
+	character.GetComponent<CharacterFighting>().enabled = false;
 	anim.SetBool("die",true);
 	yield return new WaitForSeconds(1.273f);
 	
 
 
 	RemoveOneLife();
-	Destroy(character.gameObject);
+	Destroy(character.gameObject); 
 	if((lifes) == 0){
 			TotalReset();
 			isDead = false;
 			loadComponents();
-			GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = true;
-			GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = true;
+			character.GetComponent<MainCharacterMovement>().enabled = true;
+			character.GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel("MainMenu");
 	}else{
 			ResetCollectedValues();
 			isDead = false;
 			loadComponents();
-			GameObject.FindGameObjectWithTag("Character").GetComponent<MainCharacterMovement>().enabled = true;
-			GameObject.FindGameObjectWithTag("Character").GetComponent<CharacterFighting>().enabled = true;
+			character.GetComponent<MainCharacterMovement>().enabled = true;
+			character.GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel(Application.loadedLevel);
 	}
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/////////////////////---------UNUSED CODE------------//////////////
-	/// 
-	/// 
-
-	/*
-	public void InitializeRound(){
-		//lifes, coins, points, hps init
-		lifes = 3;
-		coins = 0;
-		points = 0;
-		hp = 100;
-	}
-	*/
-	/*
-	public void OnGUI(){
-		GUI.Label(Rect(0,0,Screen.width,Screen.height),("Number of lifes: " + heroLifeCounter +
-		          									   "\nNumber of coins: "+coins+
-		          									   "\n Number of points: " + points+
-		          									   "\n Health: "+ heroHealth));
-
-
-	*/
 }

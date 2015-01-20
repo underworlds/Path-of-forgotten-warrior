@@ -35,6 +35,7 @@ public class MainCharacterMovement : MonoBehaviour {
 
 	// moving direction
 	private float move;
+	public bool canMove = true;
 
 
 	// Use this for initialization
@@ -58,24 +59,27 @@ public class MainCharacterMovement : MonoBehaviour {
 
 
 	void FixedUpdate(){
-		move = Input.GetAxis ("Horizontal");
+		if(canMove){
+			move = Input.GetAxis ("Horizontal");
 
-		anim.SetFloat ("Speed", Mathf.Abs (move));
+			anim.SetFloat("Speed", Mathf.Abs (move));
 			
-		rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+			rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
 			
 			
-		if(move > 0 && !isFacingRight){
-			Flip();
-		}else if(move < 0 && isFacingRight) {
-			Flip ();
+			if(move > 0 && !isFacingRight){
+				Flip();
+			}else if(move < 0 && isFacingRight) {
+				Flip ();
+			}
+			
+			//jumping stuff and setting to animations
+			isGrounded = Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround);
+			anim.SetBool("Ground",isGrounded);
+			anim.SetFloat("vSpeed",rigidbody2D.velocity.y);
+		}else{
+			anim.SetFloat("Speed", Mathf.Abs (0.0f));
 		}
-
-		//jumping stuff and setting to animations
-		isGrounded = Physics2D.OverlapCircle(groundCheck.position, graundRadius, whatIsGround);
-		anim.SetBool("Ground",isGrounded);
-		anim.SetFloat("vSpeed",rigidbody2D.velocity.y);
-
 	}
 
 

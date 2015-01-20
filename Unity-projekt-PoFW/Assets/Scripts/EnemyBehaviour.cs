@@ -150,7 +150,7 @@ public class EnemyBehaviour : MonoBehaviour {
 		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown && IsHeroOnDesk){
 			character.GetComponent<Animator>().SetTrigger("hitTrigger");
 			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
-			gameManager.CharacterReceiveHitFromUndead();
+			gameManager.CharacterReceiveHitFromEnemy(this.tag);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class EnemyBehaviour : MonoBehaviour {
 				enemyIsKilled = true;
 				//print("Enemy was killed");
 				character.GetComponent<Animator>().SetBool("hit", false);
-				gameManager.CharacterKillEnemy();
+				gameManager.CharacterKillEnemy(this.tag);
 				StartCoroutine(EnemyDie());
 			}else{
 				//enemy ma alespon jeden zivot
