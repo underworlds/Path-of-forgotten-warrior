@@ -48,13 +48,16 @@ public class GameManager : MonoBehaviour {
 	//point values
 	private const int POINTS_PER_COIN = 10;
 	private const int POINTS_PER_STD_ENEMY = 20; //should be multiplied by level numer (eg 20 x 1...(level 1))
+	private const int POINTS_PER_ADV_ENEMY = 40; 
 	private const int POINTS_PER_BIG_ENEMY = 60; // std enemy has 1 life = 20pts, wraith has 3 lifes = 60pts
+	private const int POINTS_PER_KERBEROS_ENEMY = 120; //WRAITH 3 lifes = 60pts. kerberos 6 lifes = 120pts
 
 	//strings to adding points
 	private const string COIN_STR = "coin";
 	private const string STANDART_ENEMY_STR = "Enemy";
 	private const string ADVANCED_ENEMY_STR = "EnemyAdv";
 	private const string BIG_ENEMY_STR = "EnemyBig";
+	private const string KERBEROS_ENEMY_STR = "Kerberos";
 	//...
 
 	//SINGLETON CODE
@@ -163,6 +166,13 @@ public class GameManager : MonoBehaviour {
 		if(type == BIG_ENEMY_STR){
 			points += POINTS_PER_BIG_ENEMY; //60
 		}
+		if(type == ADVANCED_ENEMY_STR){
+			points += POINTS_PER_ADV_ENEMY; //40
+		}
+		if(type == KERBEROS_ENEMY_STR){
+			points += POINTS_PER_KERBEROS_ENEMY; //120
+		}
+
 	}
 
 
@@ -230,7 +240,7 @@ public class GameManager : MonoBehaviour {
 //-------------------fighting methods--------------------------
 
 
-	public void CharacterReceiveHitFromEnemy(string enemyTag, float damage){
+	public void CharacterReceiveHitFromEnemy(float damage){
 
 		cumulateDamage += damage;
 

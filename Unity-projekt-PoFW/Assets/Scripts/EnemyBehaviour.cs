@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	 * Standard UNDEAD enemy: "Enemy" (1)
 	 * Advanced UNDEAD enemy: "EnemyAdv" (2)
 	 * Wraith enemy: "BigEnemy" (3)
-	 * 
+	 * Kerberos enemy: "Kerberos" }(6)
 	 * 
 "	 */
 
@@ -148,7 +148,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			character.GetComponent<Animator>().SetTrigger("hitTrigger");
 			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
 			float damage = GetEnemyDamage(this.tag);
-			gameManager.CharacterReceiveHitFromEnemy(this.tag,damage);
+			gameManager.CharacterReceiveHitFromEnemy(damage);
 		}
 	}
 
@@ -275,6 +275,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	 * Standard UNDEAD enemy: "Enemy" (1)
 	 * Advanced UNDEAD enemy: "EnemyAdv" (2)
 	 * Wraith enemy: "EnemyBig" (3)
+	 * Kerberos enemy: "Kerberos" }(6)
 	 */
 	private void GetEnemyStartLifes(){
 		string t = this.tag;
@@ -289,10 +290,15 @@ public class EnemyBehaviour : MonoBehaviour {
 			enemyLifes = 2;
 			break;
 		
-		case "EnemyBig":
+		case "EnemyBig": //WRAITH
 			enemyLifes = 3;
 			break;
+
+		case "Kerberos": //Kerberos dog
+			enemyLifes = 6;
+			break;
 		}
+
 	}
 
 
@@ -309,6 +315,10 @@ public class EnemyBehaviour : MonoBehaviour {
 			break;
 			
 		case "EnemyBig":
+			waitingTime = 1.571f;
+			break;
+
+		case "Kerberos":
 			waitingTime = 1.571f;
 			break;
 		}
@@ -331,6 +341,10 @@ public class EnemyBehaviour : MonoBehaviour {
 		case "EnemyBig":
 			enemyDamage=0.4f;
 				break;
+
+		case "Kerberos":
+			enemyDamage=0.6f;
+			break;
 		}
 		
 		return enemyDamage;

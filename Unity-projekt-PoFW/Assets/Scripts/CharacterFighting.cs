@@ -73,7 +73,8 @@ public class CharacterFighting : MonoBehaviour {
 			//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*SLASH_DISTANCE), firePoint.position.y)));
 
 			if(hit.collider != null){ 
-				if(hit.collider.tag == "Enemy" || hit.collider.tag == "EnemyAdv" || hit.collider.tag == "EnemyBig" ){
+				string HCT = hit.collider.tag;
+				if(HCT == "Enemy" || HCT == "EnemyAdv" || HCT == "EnemyBig" || HCT == "Kerberos" ){
 					hit.collider.gameObject.GetComponent<EnemyBehaviour>().Hit();
 				}		
 			}else{
