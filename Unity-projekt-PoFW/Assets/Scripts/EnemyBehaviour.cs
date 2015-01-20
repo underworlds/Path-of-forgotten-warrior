@@ -183,6 +183,11 @@ public class EnemyBehaviour : MonoBehaviour {
 		float timeToWait = GetWaitingTimeForEnemyDie(this.tag);
 		yield return new WaitForSeconds(timeToWait);
 		//destroy enemy
+		if(this.tag == "EnemyBig" ){	
+			//this enemy was wraith so we have to show the dialog of "how great you are player"
+			//search also dialogscript code and you will get it...it looks baaad bad it is not ;)
+			GameObject.Find ("DialogTriggerSpecial").GetComponent<DialogScript>().ReplacementForOnTriggerEntry();
+		}
 		Destroy(this.gameObject);
 	}
 

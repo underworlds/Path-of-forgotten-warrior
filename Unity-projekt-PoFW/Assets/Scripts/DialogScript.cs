@@ -7,7 +7,8 @@ using System.Collections;
  * 
  * To work dialogs properly, you have to make DialogTrigger and dialogSprite in scene
  * Then you have manually set size of dialogSprites array and you have tu add correct sprite to each element.
- * Once character entered the trigger the firts sprite is shown. It reacht at SPACE (next sprite) and S (skip all).
+ * And you have to add dialogFrame to public field GameObject.
+ * Once character entered the trigger the firts sprite is shown. At SPACE (next sprite) and at S (skip all).
  * 
  */
 
@@ -18,6 +19,8 @@ public class DialogScript : MonoBehaviour {
 
 	public GameObject dialogFrame; 
 	public Sprite[] dialogsSprites;
+
+	public bool thereIsSomethingNextToDialogFrame =  false;
 
 	private bool startDialogs = false;
 	private bool triggerhit = false;
@@ -40,11 +43,6 @@ public class DialogScript : MonoBehaviour {
 		character = GameObject.FindGameObjectWithTag("Character");
 		if(character == null){
 			print ("There is no character");
-		}
-
-		dialogFrame = GameObject.Find("dialog1");
-		if(dialogFrame == null){
-			print ("There is no dialogFrame");
 		}
 
 		if(GameObject.Find("wraith") != null){
@@ -87,9 +85,6 @@ public class DialogScript : MonoBehaviour {
 	//do some javadoc here
 	void OnTriggerEnter2D(Collider2D obj){
 		if (obj.gameObject.tag.Equals("Character") && !triggerhit){
-			//find character and wraith game objects
-			GameObject character = obj.gameObject;
-
 
 
 			//read chracters position
@@ -160,11 +155,40 @@ public class DialogScript : MonoBehaviour {
 	}
 
 	private void setWhatIsNextToFrame(float charX){
-		if(wraith != null){
+		if(wraith != null && thereIsSomethingNextToDialogFrame){
 			wraith.position = new Vector3(charX+wraithFrameOffset,wraith.transform.position.y,wraith.transform.position.z);
 
 			//turn off wraiths enemy behaviour
 			wraith.GetComponent<EnemyBehaviour>().enabled = false;
+		}
+	}
+
+	//this function is used only in LVL01RND03 when the chraracter kills wraith
+
+	public void ReplacementForOnTriggerEntry(){
+		if (!triggerhit){
+
+			//read chracters position
+			float charX  = character.transform.position.x;
+			//set dialogFrame position using characters position
+			dialogFrame.transform.position = new Vector3(charX+dialogFrameOffset,dialogFrame.transform.position.y,dialogFrame.transform.position.z);
+			
+			//set position of things behind dialogFrame using characters position
+			setWhatIsNextToFrame(charX);
+			
+			//get animator of character
+			anim = character.GetComponent<Animator>();
+			//stop all animations and run Idle animation
+			ClearAnimator();
+			
+			//disable moving of character
+			character.GetComponent<MainCharacterMovement>().enabled = false;
+			character.GetComponent<CharacterFighting>().enabled = false;
+			
+			//start the update code
+			triggerhit = true;	//so there will be no trigger entries
+			startDialogs = true; 
+			iter++; //set iterator to 0
 		}
 	}
 
