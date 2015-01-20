@@ -20,3 +20,9 @@ milovanou. Pak mozna Athena bude mit zaverecny monolog a zili stastne az do smrt
 
 Ke grafice: Mapy jsou upravene - pruchodnost, jednotky az na Hada udelane, Portal 
 musim dokreslit vcetne detailu map a dialogu
+
+CO BY TO JEŠTÌ CHTÌLO:
+nìjakej fadeout na závìr každýho kola
+
+minimálnì mezi levely by mìla být nìjaka screen rikajci "gratuluju, ses borec mas prvni LVL za sebou a skora 49999" 
+podobna screen na konci

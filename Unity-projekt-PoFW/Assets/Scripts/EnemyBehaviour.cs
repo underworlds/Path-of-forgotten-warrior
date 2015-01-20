@@ -21,9 +21,6 @@ public class EnemyBehaviour : MonoBehaviour {
     public float acceleration = 30;
     private float targetSpeed = 1.5f;
 
-	//sila utoku nepratel
-	private const int DAMAGE_OF_UNDEAD = 10;
-
     //privatne premenne na chod nepriatela
     private float currentSpeed;
 
@@ -150,7 +147,8 @@ public class EnemyBehaviour : MonoBehaviour {
 		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown && IsHeroOnDesk){
 			character.GetComponent<Animator>().SetTrigger("hitTrigger");
 			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
-			gameManager.CharacterReceiveHitFromEnemy(this.tag);
+			float damage = GetEnemyDamage(this.tag);
+			gameManager.CharacterReceiveHitFromEnemy(this.tag,damage);
 		}
 	}
 
@@ -318,4 +316,23 @@ public class EnemyBehaviour : MonoBehaviour {
 		return waitingTime;
 	}
 
+	private float GetEnemyDamage(string tag){
+		float enemyDamage = 0.2f;
+		
+		switch(tag){
+		case "Enemy":
+			enemyDamage=0.2f;
+			break;
+			
+		case "EnemyAdv":
+			enemyDamage=0.3f;
+				break;
+			
+		case "EnemyBig":
+			enemyDamage=0.4f;
+				break;
+		}
+		
+		return enemyDamage;
+	}
 }

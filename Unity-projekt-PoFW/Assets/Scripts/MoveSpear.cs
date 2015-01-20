@@ -62,10 +62,12 @@ public class MoveSpear : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision){
-		print ("Spear hit something " + collision.gameObject.tag);
+		string CGOT = collision.gameObject.tag;
+		print ("Spear hit something " + CGOT);
 		//WRITE THE HIT TO THE ENEMY
+		if(CGOT == "Enemy" || CGOT == "EnemyAdv" || CGOT == "EnemyBig" ){
 		collision.gameObject.GetComponent<EnemyBehaviour>().Hit();
-
+		}
 
 		Destroy(this.gameObject);
 	}

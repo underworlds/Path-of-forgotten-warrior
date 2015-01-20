@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour {
 	//strings to adding points
 	private const string COIN_STR = "coin";
 	private const string STANDART_ENEMY_STR = "Enemy";
+	private const string ADVANCED_ENEMY_STR = "EnemyAdv";
 	private const string BIG_ENEMY_STR = "EnemyBig";
 	//...
 
@@ -229,8 +230,8 @@ public class GameManager : MonoBehaviour {
 //-------------------fighting methods--------------------------
 
 
-	public void CharacterReceiveHitFromEnemy(string enemyTag){
-		damage = resolveEnemyDamage(enemyTag);
+	public void CharacterReceiveHitFromEnemy(string enemyTag, float damage){
+
 		cumulateDamage += damage;
 
 		if(cumulateDamage > 0.99f){
@@ -247,21 +248,6 @@ public class GameManager : MonoBehaviour {
 	public void CharacterKillEnemy(string enemyTag){
 			AddPoints(enemyTag);
 	}
-
-	private float resolveEnemyDamage(string enemyTag){
-		if(enemyTag == STANDART_ENEMY_STR){
-			return 0.2f;
-		}	
-		if(enemyTag == BIG_ENEMY_STR){
-			return 0.4f;
-		}else{
-			return 0.1f;
-		}
-
-	}
-
-
-
 
 	//----DIYING SOLUTION--------
 
