@@ -5,7 +5,7 @@ using System.Collections;
 public class RestartTrigger : MonoBehaviour {
 
 	private GameManager gameManager;
-    private Transform character;
+    private GameObject character;
     
 
 	//COLISION WITH RESTART FLOOR
@@ -13,8 +13,8 @@ public class RestartTrigger : MonoBehaviour {
         
         
         if (obj.gameObject.tag.Equals("Character")){
-            character = GameObject.FindGameObjectWithTag("Character").transform;
-            character.GetComponent<AudioForHero>().deathSound();
+			character = GameObject.FindGameObjectWithTag("Character");
+            //character.GetComponent<AudioForHero>().deathSound();
 			gameManager.killCharacter();
         }
 
@@ -25,8 +25,8 @@ public class RestartTrigger : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D collision){
         
         if (collision.gameObject.tag.Equals("Character")){
-            character = GameObject.FindGameObjectWithTag("Character").transform;
-            character.GetComponent<AudioForHero>().deathSound();
+			character = GameObject.FindGameObjectWithTag("Character");
+            //character.GetComponent<AudioForHero>().deathSound();
 			gameManager.killCharacter();
         }
     }
