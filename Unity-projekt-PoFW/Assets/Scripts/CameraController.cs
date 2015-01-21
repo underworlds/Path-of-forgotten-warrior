@@ -31,6 +31,9 @@ public class CameraController : MonoBehaviour {
 	private Vector2 velocity;
 	private float lookTransformConst = 0.0f;
 
+    public bool endedRound;
+    public bool timeToContinue;
+
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +50,8 @@ public class CameraController : MonoBehaviour {
         Lifes = 3;
         Points = 0;
         HP = 100;
+        endedRound = false;
+        timeToContinue = false;
 	}
 
 	void Update(){
@@ -84,12 +89,25 @@ public class CameraController : MonoBehaviour {
 
     private void OnGUI()
     {
+        if (endedRound)
+        {
+            notStillPlaying();
+        }
+        else
+        {
+            StillPlaying();
+        }
         //healthbar-done
+        
+    }
+
+    private void StillPlaying()
+    {
         Texture2D tx2DFlash = new Texture2D(1, 1); //Creates 2D texture
         tx2DFlash.SetPixel(1, 1, Color.red); //Sets the 1 pixel to be white
         tx2DFlash.Apply(); //Applies all the changes made
         GUI.DrawTexture(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP / 100f), Screen.height * 0.025f), tx2DFlash); //Draws the texture for the entire screen (width, height)
-        
+
         //GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP/100f), Screen.height * 0.78f), HealthBar, "");
 
         //healthbarlimits-done
@@ -99,20 +117,20 @@ public class CameraController : MonoBehaviour {
         switch (Lifes)
         {
             case 1:
-                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
                 break;
             case 2:
-                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-                 break;
+                GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                break;
             case 3:
-                 GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
-                 GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f * 2f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
+                GUI.Button(new Rect(Screen.width * 0.1f + Screen.width * 0.04f * 2f, Screen.height * 0.18f, Screen.width * 0.04f, Screen.width * 0.04f), Helmets, "");
 
                 break;
         }
-       
+
         //score
         GUI.Button(new Rect(Screen.width * 0.24f, Screen.height * 0.21f, Screen.width * 0.1f, Screen.height * 0.1f), ScoreLimits, "");
         GUIStyle style = new GUIStyle();
@@ -120,11 +138,11 @@ public class CameraController : MonoBehaviour {
         style.font = FontForGui;
         style.fontSize = Screen.height / 28;
         style.alignment = TextAnchor.MiddleCenter;
-        GUI.Label(new Rect(0.265f * Screen.width, 0.21f * Screen.height, Screen.width*0.05f, Screen.height*0.05f), Points + "", style);
+        GUI.Label(new Rect(0.265f * Screen.width, 0.21f * Screen.height, Screen.width * 0.05f, Screen.height * 0.05f), Points + "", style);
         //ingame menu
         if (isGamePaused)
         {
-            
+
             if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f, Screen.width / 5f, Screen.height / 10f), Continue, ""))
             {
                 isGamePaused = false;
@@ -140,16 +158,44 @@ public class CameraController : MonoBehaviour {
 
             if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Return, ""))
             {
-				GameObject.FindObjectOfType<GameManager>().inMainMenu = true;
-				Application.LoadLevel("MainMenu");
+                GameObject.FindObjectOfType<GameManager>().inMainMenu = true;
+                Application.LoadLevel("MainMenu");
             }
         }
 
 
         else
         {
-            
+
         }
     }
+    private void notStillPlaying()
+    {
+        
+        GUIStyle styleForTitle = new GUIStyle();
+        styleForTitle.normal.textColor = Color.white;
+        styleForTitle.font = FontForGui;
+        styleForTitle.fontSize = Screen.height / 15;
+        styleForTitle.alignment = TextAnchor.MiddleCenter;
+        //1
+        GUI.Label(
+                new Rect(
+                    0.455f * Screen.width,
+                    0.2f * Screen.height,
+                    Screen.width * 0.05f,
+                    Screen.height * 0.05f),
+                "You have finished the game!\nScore: " + Points,
+                styleForTitle);
+        
+        if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f*3f, Screen.width / 5f, Screen.height / 10f), Continue, ""))
+        {
+            timeToContinue = true;
+        }
 
+        if (GUI.Button(new Rect(Screen.width * 0.4f, Screen.height * 0.12f + Screen.height * 0.11f * 4f, Screen.width / 5f, Screen.height / 10f), Return, ""))
+        {
+            GameObject.FindObjectOfType<GameManager>().inMainMenu = true;
+            Application.LoadLevel("MainMenu");
+        }
+    }
 }
