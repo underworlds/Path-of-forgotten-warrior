@@ -4,13 +4,18 @@ pokud chybeji dialogy nebo cokoliv tak hlasit!
 2. cast Podsveti
 1. kolo objevuji se silnejsi zombie na 2-3 rany, hrdina se nachazi jiz v Podsveti,
 na zacatku dialog s upozornenim na silnejsi potvory. Projde kolo jako obvykle.
+
 2. kolo bude vedeno tak, ze prostredi bude jako po velike bitve - Posledni valka,
 zde se budou nachazet Padli vojaci - sprity fallen soldier, na zacatku pribehovy 
 dialog a na konci kola by se mel objevit silnejsi vojak - Sampion, na konci kola 
 bude dialog s predstavenim sampiona. Pak souboj a na konci dialog.
+
+
 3. kolo bude ve stylu mista ztrapenych dusi, zde se budou objevovat Wraith potvory
 -stejne jako Charon, budou strazit tuto zemi. Opet na zacatku dialog, tentokrat na
 konci nikdo nebude.
+
+
 4. kolo bude Haduv palac, na zacatku bude opet dialog, stvury bude mix ale budou silnejsi.
 Pujde o to, ze cela cesta k Hadovi byla zkouskou. Hades je jedinym strazcem Elysia 
 a do Elysia mohou vstoupit jen mrtvi. Takze u Hadova kresla bude dialog a zaverecna 
@@ -38,3 +43,15 @@ Dialogy tøetí kolo první level viz fb co martin psal
 dialogy horizontálnì upravit, popø poèítat i pozici y z polohy hrdiny
 
 zrušit všechny výpisy v kódu
+
+pøi prùchodu kolem by mìl dostat 100 zdraví
+
+Kerberos souboj
+Champion souboj 
+Hades souboj
+
+
+DONE:
+
+
+
