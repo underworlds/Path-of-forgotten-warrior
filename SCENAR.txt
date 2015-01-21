@@ -29,7 +29,12 @@ podobna screen na konci
 
 lvl02rnd04: V pocitadle skore se neobjevuje správný font
 
-v kodu restart trigger jsem prozatim zakomentoval radky ovladajici zvuk, nebot v kolech kde neni zvuk hotov to vyhazuje vyjmku
-a nemuzu pak zkontrolovat funkcnost kodu
-
 Doladit kod aby se utok mecem nerovnal utok kopim ...
+
+Bug v prvním kole prvním levelu dole v mapì bílý obdelník
+
+Dialogy tøetí kolo první level viz fb co martin psal 
+
+dialogy horizontálnì upravit, popø poèítat i pozici y z polohy hrdiny
+
+zrušit všechny výpisy v kódu
