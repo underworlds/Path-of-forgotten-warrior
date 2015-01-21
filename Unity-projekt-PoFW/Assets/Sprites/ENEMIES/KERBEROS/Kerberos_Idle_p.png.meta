@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: 1a1f21add06a63e498889896ece7409b
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Kerberos_Idle_p_0
+    21300002: Kerberos_Idle_p_1
+    21300004: Kerberos_Idle_p_2
+    21300006: Kerberos_Idle_p_3
+    21300008: Kerberos_Idle_p_4
+    21300010: Kerberos_Idle_p_5
+    21300012: Kerberos_Idle_p_6
+    21300014: Kerberos_Idle_p_7
+    21300016: Kerberos_Idle_p_8
+    21300018: Kerberos_Idle_p_9
+    21300020: Kerberos_Idle_p_10
+    21300022: Kerberos_Idle_p_11
+    21300024: Kerberos_Idle_p_12
+    21300026: Kerberos_Idle_p_13
+    21300028: Kerberos_Idle_p_14
+    21300030: Kerberos_Idle_p_15
+    21300032: Kerberos_Idle_p_16
+    21300034: Kerberos_Idle_p_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Kerberos_Idle_p_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4980
+        width: 600
+        height: 420
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 4982
+        width: 600
+        height: 418
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4379
+        width: 600
+        height: 421
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 4374
+        width: 600
+        height: 426
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3777
+        width: 600
+        height: 423
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 3777
+        width: 600
+        height: 423
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3183
+        width: 600
+        height: 417
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_7
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 3183
+        width: 600
+        height: 417
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2585
+        width: 600
+        height: 415
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_9
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2585
+        width: 600
+        height: 415
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1980
+        width: 600
+        height: 420
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1984
+        width: 600
+        height: 416
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1386
+        width: 600
+        height: 414
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1386
+        width: 600
+        height: 414
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 773
+        width: 600
+        height: 427
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 765
+        width: 600
+        height: 435
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 175
+        width: 600
+        height: 425
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Idle_p_17
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 187
+        width: 600
+        height: 413
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 

@@ -184,6 +184,10 @@ public class GameManager : MonoBehaviour {
 		lifes--;
 	}
 
+	public void FillHP(){
+		hp = STARTING_NUMBER_OF_HP;
+	}
+
 //--------LOADING LEVEL WORK WITH VALUES METHODS -------------
 
 	/**

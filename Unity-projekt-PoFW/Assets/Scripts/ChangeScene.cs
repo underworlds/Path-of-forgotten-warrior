@@ -54,15 +54,19 @@ public class ChangeScene : MonoBehaviour {
 
 		//------------LEVEL 1-----------------
 		case LVL_01_RND_01:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_01_RND_02);
 			break;
 		case LVL_01_RND_02:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_01_RND_03);
 			break;
 		case LVL_01_RND_03:
+
 			if(GameObject.FindGameObjectWithTag("EnemyBig") == null){
+				gameManager.FillHP();
 				gameManager.Checkpoint();
 				Application.LoadLevel(LVL_01_RND_04);
 			}else{
@@ -71,24 +75,29 @@ public class ChangeScene : MonoBehaviour {
 
 			break;
 		case LVL_01_RND_04:
-			gameManager.Checkpoint();
-			Application.LoadLevel(LVL_02_RND_01);
+			gameManager.FillHP();
+				gameManager.Checkpoint();
+				Application.LoadLevel(LVL_02_RND_01);
 			break;
 		
 		//----------------LEVEL 2-------------
 		case LVL_02_RND_01:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_02_RND_02);
 			break;
 		case LVL_02_RND_02:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_02_RND_03);
 			break;
 		case LVL_02_RND_03:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			Application.LoadLevel(LVL_02_RND_04);
 			break;
 		case LVL_02_RND_04:
+			gameManager.FillHP();
 			gameManager.Checkpoint();
 			//Application.LoadLevel(LVL_03_RND_01);
             Application.LoadLevel(THE_END);

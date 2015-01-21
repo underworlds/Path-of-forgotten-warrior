@@ -75,7 +75,8 @@ public class EnemyBehaviour : MonoBehaviour {
             //kontrola ci nepriatel sa neotocil
             int check = 0;
             
-			if(Vector3.Distance(charPosition,this.transform.position) < 0.5f){//vzdalenost k utoku, zastav a zautoc
+			if(Vector3.Distance(charPosition,this.transform.position) < 0.5f || ((Vector3.Distance(charPosition,this.transform.position) < 0.9f) && this.tag== "Kerberos")){//vzdalenost k utoku, zastav a zautoc
+				print ("Attack");
 				attacking = true;
 				StopMovement();
 				Attack();
@@ -144,7 +145,7 @@ public class EnemyBehaviour : MonoBehaviour {
 	private void Attack(){
 		anim.SetBool("attack",true);
 
-		if( Vector3.Distance(charPosition,this.transform.position) < 0.5f && !charFight.isShieldDown && IsHeroOnDesk){
+		if( (Vector3.Distance(charPosition,this.transform.position) < 0.5f || ((Vector3.Distance(charPosition,this.transform.position) < 0.9f) && this.tag== "Kerberos") ) && !charFight.isShieldDown && IsHeroOnDesk){
 			character.GetComponent<Animator>().SetTrigger("hitTrigger");
 			//ZDE BUDE METODA, KTERA ROZHODNE JAKY HIT CHARACTER DOSTAL...
 			float damage = GetEnemyDamage(this.tag);
@@ -163,9 +164,10 @@ public class EnemyBehaviour : MonoBehaviour {
 				gameManager.CharacterKillEnemy(this.tag);
 				StartCoroutine(EnemyDie());
 			}else{
+				print("enemy hitted");
 				//enemy ma alespon jeden zivot
 				//PREHREJ ANIMACI ZASAHU ENEMY, zatim jen pro wraitha
-				if(this.tag == "EnemyBig"){
+				if(this.tag == "EnemyBig" || this.tag == "Kerberos" ){
 					//print("Enemy recieved hit and survive");
 					StartCoroutine(EnemyHit());
 				}
@@ -319,7 +321,7 @@ public class EnemyBehaviour : MonoBehaviour {
 			break;
 
 		case "Kerberos":
-			waitingTime = 1.571f;
+			waitingTime = 1.200f;
 			break;
 		}
 

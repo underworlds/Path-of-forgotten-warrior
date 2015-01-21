@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 9c6b0f896e425224ea74e03d2c8a2bc2
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Kerberos_Hit_p_0
+    21300002: Kerberos_Hit_p_1
+    21300004: Kerberos_Hit_p_2
+    21300006: Kerberos_Hit_p_3
+    21300008: Kerberos_Hit_p_4
+    21300010: Kerberos_Hit_p_5
+    21300012: Kerberos_Hit_p_6
+    21300014: Kerberos_Hit_p_7
+    21300016: Kerberos_Hit_p_8
+    21300018: Kerberos_Hit_p_9
+    21300020: Kerberos_Hit_p_10
+    21300022: Kerberos_Hit_p_11
+    21300024: Kerberos_Hit_p_12
+    21300026: Kerberos_Hit_p_13
+    21300028: Kerberos_Hit_p_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Kerberos_Hit_p_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4333
+        width: 600
+        height: 467
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_1
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 4346
+        width: 600
+        height: 454
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3749
+        width: 600
+        height: 451
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 3744
+        width: 600
+        height: 456
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3137
+        width: 600
+        height: 463
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 3141
+        width: 600
+        height: 459
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2552
+        width: 600
+        height: 448
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_7
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2552
+        width: 600
+        height: 448
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1945
+        width: 600
+        height: 452
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_9
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1940
+        width: 600
+        height: 460
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1333
+        width: 600
+        height: 467
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1333
+        width: 600
+        height: 467
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 737
+        width: 600
+        height: 463
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_13
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 742
+        width: 600
+        height: 458
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Kerberos_Hit_p_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 600
+        height: 460
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
