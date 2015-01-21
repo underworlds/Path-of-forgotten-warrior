@@ -85,7 +85,12 @@ public class CameraController : MonoBehaviour {
     private void OnGUI()
     {
         //healthbar-done
-        GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP/100f), Screen.height * 0.78f), HealthBar, "");
+        Texture2D tx2DFlash = new Texture2D(1, 1); //Creates 2D texture
+        tx2DFlash.SetPixel(1, 1, Color.red); //Sets the 1 pixel to be white
+        tx2DFlash.Apply(); //Applies all the changes made
+        GUI.DrawTexture(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP / 100f), Screen.height * 0.025f), tx2DFlash); //Draws the texture for the entire screen (width, height)
+        
+        //GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP/100f), Screen.height * 0.78f), HealthBar, "");
 
         //healthbarlimits-done
         GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f, Screen.width * 0.24f, Screen.height * 0.78f), HealthBarLimits, "");

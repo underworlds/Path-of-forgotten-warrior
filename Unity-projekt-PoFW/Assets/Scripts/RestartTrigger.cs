@@ -14,7 +14,7 @@ public class RestartTrigger : MonoBehaviour {
         
         if (obj.gameObject.tag.Equals("Character")){
 			character = GameObject.FindGameObjectWithTag("Character");
-            //character.GetComponent<AudioForHero>().deathSound();
+            character.GetComponent<AudioForHero>().deathSound();
 			gameManager.killCharacter();
         }
 
