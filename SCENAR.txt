@@ -27,20 +27,13 @@ Ke grafice: Mapy jsou upravene - pruchodnost, jednotky az na Hada udelane, Porta
 musim dokreslit vcetne detailu map a dialogu
 
 CO BY TO JEŠTÌ CHTÌLO:
+
+
 nìjakej fadeout na závìr každýho kola
 
 minimálnì mezi levely by mìla být nìjaka screen rikajci "gratuluju, ses borec mas prvni LVL za sebou a skora 49999" 
 podobna screen na konci
 
-lvl02rnd04: V pocitadle skore se neobjevuje správný font
-
-Doladit kod aby se utok mecem nerovnal utok kopim ...
-
-Bug v prvním kole prvním levelu dole v mapì bílý obdelník
-
-Dialogy tøetí kolo první level viz fb co martin psal 
-
-dialogy horizontálnì upravit, popø poèítat i pozici y z polohy hrdiny
 
 zrušit všechny výpisy v kódu
 
@@ -48,12 +41,16 @@ pøi prùchodu kolem by mìl dostat 100 zdraví
 
 Kerberos souboj
 Champion souboj 
-Hades souboj
 
-Level 2 kolo 3 wraithovi se nechce umøít
+
 
 
 DONE:
 
+Level 2 kolo 3 wraithovi se nechce umøít SOLVED
+dialogy horizontálnì upravit, popø poèítat i pozici y z polohy hrdiny SOLVED
+lvl02rnd04: V pocitadle skore se neobjevuje správný font SOLVED
+Bug v prvním kole prvním levelu dole v mapì bílý obdelník SOLVED
+Dialogy tøetí kolo první level viz fb co martin psal  SOLVED¨
 
-
+Doladit kod aby se utok mecem nerovnal utok kopim ... NO TIME

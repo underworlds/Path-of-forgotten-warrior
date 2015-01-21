@@ -45,8 +45,8 @@ public class DialogScript : MonoBehaviour {
 			print ("There is no character");
 		}
 
-		if(GameObject.Find("wraith") != null){
-			wraith = GameObject.Find("wraith").transform;
+		if(GameObject.FindGameObjectWithTag("EnemyBig") != null){
+			wraith = GameObject.FindGameObjectWithTag("EnemyBig").transform;
 			//print("Find wraith");
 		}else{
 			wraith = null;
@@ -84,25 +84,27 @@ public class DialogScript : MonoBehaviour {
 
 	//do some javadoc here
 	void OnTriggerEnter2D(Collider2D obj){
+		print("HIT TRIGER"+ obj.tag);
 		if (obj.gameObject.tag.Equals("Character") && !triggerhit){
 
+			//disable moving of character
+			character.GetComponent<MainCharacterMovement>().enabled = false;
+			character.GetComponent<CharacterFighting>().enabled = false;
 
 			//read chracters position
 			float charX  = character.transform.position.x;
-			//set dialogFrame position using characters position
-			dialogFrame.transform.position = new Vector3(charX+dialogFrameOffset,dialogFrame.transform.position.y,dialogFrame.transform.position.z);
-
-			//set position of things behind dialogFrame using characters position
-			setWhatIsNextToFrame(charX);
+			float charY  = character.transform.position.y;
 
 			//get animator of character
 			anim = character.GetComponent<Animator>();
 			//stop all animations and run Idle animation
 			ClearAnimator();
 
-			//disable moving of character
-			character.GetComponent<MainCharacterMovement>().enabled = false;
-			character.GetComponent<CharacterFighting>().enabled = false;
+			//set dialogFrame position using characters position
+			dialogFrame.transform.position = new Vector3(charX+dialogFrameOffset,charY+0.4f,dialogFrame.transform.position.z);
+
+			//set position of things behind dialogFrame using characters position
+			setWhatIsNextToFrame(charX);
 
 			//start the update code
 			triggerhit = true;	//so there will be no trigger entries
