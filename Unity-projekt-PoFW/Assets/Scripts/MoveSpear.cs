@@ -4,11 +4,8 @@ using System.Collections;
 public class MoveSpear : MonoBehaviour {
 
 	private const float MOVE_SPEED = 5.0f;
-	//private Transform character;
 	private GameObject character;
 	private MainCharacterMovement mcm;
-	private CharacterFighting cf;
-
 	private int isFacingRight = 1;
 
 
@@ -24,12 +21,6 @@ public class MoveSpear : MonoBehaviour {
 			if (mcm == null) {
 				print ("Didnt find mcm component ...well fuck");		
 			}
-
-			cf = character.GetComponent<CharacterFighting>();
-			if (mcm == null) {
-				print ("Didnt find mcm component ...well fuck");		
-			}
-
 		}
 
 		  
@@ -52,8 +43,6 @@ public class MoveSpear : MonoBehaviour {
 		Quaternion rotationOfSpear = transform.rotation;
 		rotationOfSpear.y = 90 - (isFacingRight * 90); //it will be 180 for isNotFacingRight and 0 for isFacingRight
 		transform.rotation = rotationOfSpear; 
-
-		
 
 		//move spear
 		transform.Translate(isFacingRight* transform.right * Time.deltaTime * MOVE_SPEED);

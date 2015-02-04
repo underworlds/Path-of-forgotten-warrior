@@ -37,8 +37,6 @@ public class GameManager : MonoBehaviour {
 	//CHECKPOINTS VALUES 
 	private static int cpCoins;
 	private static int cpPoints;
-	//private static int cpCoins; ...will be implemented
-
 
 	// CONSTANT VALUES ...WILL BE ALLWAYS UPPERCASE
 	private const int STARTING_NUMBER_OF_LIFES = 3;
@@ -47,10 +45,10 @@ public class GameManager : MonoBehaviour {
 	private const int STARTING_NUMBER_OF_HP = 100;
 	//point values
 	private const int POINTS_PER_COIN = 10;
-	private const int POINTS_PER_STD_ENEMY = 20; //should be multiplied by level numer (eg 20 x 1...(level 1))
+	private const int POINTS_PER_STD_ENEMY = 20;
 	private const int POINTS_PER_ADV_ENEMY = 40; 
-	private const int POINTS_PER_BIG_ENEMY = 60; // std enemy has 1 life = 20pts, wraith has 3 lifes = 60pts
-	private const int POINTS_PER_KERBEROS_ENEMY = 120; //WRAITH 3 lifes = 60pts. kerberos 6 lifes = 120pts
+	private const int POINTS_PER_BIG_ENEMY = 60; 
+	private const int POINTS_PER_KERBEROS_ENEMY = 120;
 
 	//strings to adding points
 	private const string COIN_STR = "coin";
@@ -58,7 +56,6 @@ public class GameManager : MonoBehaviour {
 	private const string ADVANCED_ENEMY_STR = "EnemyAdv";
 	private const string BIG_ENEMY_STR = "EnemyBig";
 	private const string KERBEROS_ENEMY_STR = "Kerberos";
-	//...
 
 	//SINGLETON CODE
 	private static GameManager _instance;
@@ -118,7 +115,6 @@ public class GameManager : MonoBehaviour {
 
 		if(load){
 			//Finding camera
-			//print ("LOADING");		
 			camera = GameObject.FindObjectOfType<Camera>().transform;
 			if (camera == null) {
 				print ("Didnt find Camera ...well fuck");		
@@ -161,7 +157,7 @@ public class GameManager : MonoBehaviour {
 			points += POINTS_PER_COIN;
 		}
 		if(type == STANDART_ENEMY_STR){
-			points += POINTS_PER_STD_ENEMY; //SHOULD BE 20xLEVEL_NUMBER ... 
+			points += POINTS_PER_STD_ENEMY; //20
 		}
 		if(type == BIG_ENEMY_STR){
 			points += POINTS_PER_BIG_ENEMY; //60
@@ -226,20 +222,18 @@ public class GameManager : MonoBehaviour {
 		if(scoreSheetText != null){
             scoreSheetText.text = "";
 /*
-			scoreSheetText.text = "Number of lifes: " + lifes +
-				"\nNumber of coins: " + coins +
-					"\nNumber of points: " + points +
-					"\nHealth: " + hp +
-					"\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK"+
-					"\nCP values: [points / coins] " + cpPoints +  " / " +cpCoins;*/
+ * scoreSheetText.text = "Number of lifes: " + lifes +
+ * "\nNumber of coins: " + coins +
+ * "\nNumber of points: " + points +
+ * "\nHealth: " + hp +
+ * "\nVYPIS JEN KE KONTROLNIM UCELUM\nJE TREBA DORESIT JINAK"+
+ * "\nCP values: [points / coins] " + cpPoints +  " / " +cpCoins;
+*/
 
 		}else{
 			scoreSheetText = GameObject.FindObjectOfType<GUIText> ();
 		}
-
 	}
-
-
 
 //-------------------fighting methods--------------------------
 
@@ -263,6 +257,15 @@ public class GameManager : MonoBehaviour {
 			AddPoints(enemyTag);
 	}
 
+	//-----FALL DAMAGE SOLUTION----
+	public void FallDamage(){
+		hp -= 5;
+		print("HP>"+ hp);
+		if(hp <= 0 ){
+			killCharacter();
+		}
+	}
+
 	//----DIYING SOLUTION--------
 
 	public void killCharacter(){
@@ -274,38 +277,31 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
-
 //here the waitforseconds is exactly the length of animaton
 //if you move with animation sample you have to change this
 
-private IEnumerator Die(){
-	character.GetComponent<MainCharacterMovement>().enabled = false;
-	character.GetComponent<CharacterFighting>().enabled = false;
-	anim.SetBool("die",true);
-	yield return new WaitForSeconds(1.273f);
-	
+	private IEnumerator Die(){
+		character.GetComponent<MainCharacterMovement>().enabled = false;
+		character.GetComponent<CharacterFighting>().enabled = false;
+		anim.SetBool("die",true);
+		yield return new WaitForSeconds(1.273f);	
 
-
-	RemoveOneLife();
-	Destroy(character.gameObject); 
-	if((lifes) == 0){
+		RemoveOneLife();
+		Destroy(character.gameObject); 
+		if((lifes) == 0){
 			TotalReset();
 			isDead = false;
 			loadComponents();
 			character.GetComponent<MainCharacterMovement>().enabled = true;
 			character.GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel("MainMenu");
-	}else{
+		}else{
 			ResetCollectedValues();
 			isDead = false;
 			loadComponents();
 			character.GetComponent<MainCharacterMovement>().enabled = true;
 			character.GetComponent<CharacterFighting>().enabled = true;
 			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
-}
-
-
-
 }

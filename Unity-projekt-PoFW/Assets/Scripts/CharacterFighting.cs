@@ -94,10 +94,8 @@ public class CharacterFighting : MonoBehaviour {
 			anim.SetBool ("throw",true);
 
 			//we have to wait for throw animation before throw
-           
 			StartCoroutine(ThrowSpear());
 		}else{
-			//mcm.canMove = true;
 			anim.SetBool ("throw",false);
 		}
 	}
@@ -105,22 +103,16 @@ public class CharacterFighting : MonoBehaviour {
 
 
 	private IEnumerator ThrowSpear(){
-		int isFR = IsFRtoInt(GetComponent<MainCharacterMovement>().isFacingRight);
 
-		Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
-		Vector2 throwDirection = (new Vector2(firePoint.position.x+(isFR*10.0f), firePoint.position.y) - firePointPosition);
-		//print (throwDirection);
 		anim.SetBool ("throw",true);
         isTimeToThrowSpear = false;
 		yield return new WaitForSeconds(0.520f);
-
-		// cast ray to see if we hit enemy
-		//RaycastHit2D hit = Physics2D.Raycast(firePointPosition,throwDirection, THROW_DISTANCE, whatToHit);
+		
 		//show user the spear and do some magic
 		ThrowEffect();
-		//just for debugging purposes	
-		//Debug.DrawLine(firePointPosition, (new Vector2(firePoint.position.x+(isFR*THROW_DISTANCE), firePoint.position.y)));
+
 		mcm.canMove = true;
+
 		/* THIS IS NOW SOLVED IN MOVESPEAR SCRIPT
 		if(hit.collider != null){ 
 
@@ -130,11 +122,11 @@ public class CharacterFighting : MonoBehaviour {
 		}else{
 			//print ("...Collider of hit was null");
 		}*/
+
         yield return new WaitForSeconds(1f);
         isTimeToThrowSpear = true;
 
 	}
-
 
 
 	void ThrowEffect(){
@@ -149,10 +141,4 @@ public class CharacterFighting : MonoBehaviour {
 			return -1;
 		}
 	}
-
-	public void HitFromSpear(string tagOfHitCollider){
-
-	}
-
-
 }

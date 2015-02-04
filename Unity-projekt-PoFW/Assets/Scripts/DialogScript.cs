@@ -37,8 +37,6 @@ public class DialogScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//print("STARTING METHOD OF DIALOGS");
-
 
 		character = GameObject.FindGameObjectWithTag("Character");
 		if(character == null){
@@ -47,13 +45,10 @@ public class DialogScript : MonoBehaviour {
 
 		if(GameObject.FindGameObjectWithTag("EnemyBig") != null){
 			wraith = GameObject.FindGameObjectWithTag("EnemyBig").transform;
-			//print("Find wraith");
 		}else{
 			wraith = null;
 			print("DID not find wraith");
 		}
-
-
 	}
 	
 	// Update is called once per frame
@@ -61,7 +56,6 @@ public class DialogScript : MonoBehaviour {
 		if(startDialogs){
 
 			if(Input.GetKeyDown(KeyCode.Space)){
-				//print("Space hitted");
 				iter++;
 			}
 			if(iter > prevIter){  //iterator has changed
@@ -72,19 +66,13 @@ public class DialogScript : MonoBehaviour {
 					dialogFrame.GetComponent<SpriteRenderer>().sprite = dialogsSprites[iter];
 				}
 			}
-			
-			//print("Iterator " + iter);
-			if(Input.GetKey(KeyCode.S)){// key S to skip dialogues,
+			if(Input.GetKey(KeyCode.S)){// key S to skip dialogs,
 				endDialogs ();
 			}
 		}
 	}
 
-
-
-	//do some javadoc here
 	void OnTriggerEnter2D(Collider2D obj){
-		print("HIT TRIGER"+ obj.tag);
 		if (obj.gameObject.tag.Equals("Character") && !triggerhit){
 
 			//disable moving of character
@@ -107,14 +95,14 @@ public class DialogScript : MonoBehaviour {
 			setWhatIsNextToFrame(charX);
 
 			//start the update code
-			triggerhit = true;	//so there will be no trigger entries
+			triggerhit = true;	//so there will be no other trigger entries
 			startDialogs = true; 
 			iter++; //set iterator to 0
 		}
 
 	}
 
-	//this code show him last dialog card (which is empty)
+	//this code shows him last dialog card (which is empty)
 	//makes class of movement and fighting enabled  and then destroy itself
 	private void endDialogs(){
 		//print("Set dialog to empty one");
@@ -130,7 +118,6 @@ public class DialogScript : MonoBehaviour {
 		if(wraith != null){
 			wraith.GetComponent<EnemyBehaviour>().enabled = true;
 		}
-		
 		
 		//print ("Destroy trigger");
 		Destroy (this.gameObject);

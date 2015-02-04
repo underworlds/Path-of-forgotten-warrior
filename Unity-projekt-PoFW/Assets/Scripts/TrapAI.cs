@@ -15,7 +15,6 @@ public class TrapAI : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D obj)
     {
-
         if (obj.gameObject.tag.Equals("Traps"))
         {
             this.Flip();

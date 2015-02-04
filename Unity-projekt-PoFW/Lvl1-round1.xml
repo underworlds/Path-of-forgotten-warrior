@@ -1,12 +1,12 @@
 ﻿<Player>
+  <Points>170</Points>
+  <Points>100</Points>
   <Points>30</Points>
   <Points>20</Points>
   <Points>0</Points>
-  <Points>0</Points>
-  <Points>0</Points>
+  <ActualTime>2015-02-04T20:55:40.576863+01:00</ActualTime>
+  <ActualTime>2015-02-04T20:12:26.397739+01:00</ActualTime>
   <ActualTime>2015-01-17T15:09:17.3773182+01:00</ActualTime>
   <ActualTime>2015-01-17T15:09:48.8839382+01:00</ActualTime>
-  <ActualTime>2015-01-17T11:59:36.6284984+01:00</ActualTime>
-  <ActualTime>2015-01-17T11:59:36.6284984+01:00</ActualTime>
   <ActualTime>2015-01-17T11:59:36.6284984+01:00</ActualTime>
 </Player>

@@ -8,7 +8,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	 * Advanced UNDEAD enemy: "EnemyAdv" (2)
 	 * Wraith enemy: "BigEnemy" (3)
 	 * Kerberos enemy: "Kerberos" }(6)
-	 * 
 "	 */
 
     //parametre na urcenie orientacie nepriatela
@@ -24,7 +23,6 @@ public class EnemyBehaviour : MonoBehaviour {
     //privatne premenne na chod nepriatela
     private float currentSpeed;
 
-
     private Vector2 charPosition = new Vector2(0, 0); //pozicie hrdiny
     public bool IsHeroOnDesk { set; private get; } //premenna ci je hrdina na doske
     
@@ -33,7 +31,6 @@ public class EnemyBehaviour : MonoBehaviour {
 	private GameObject character;
 	private GameManager gameManager;
 	private CharacterFighting charFight;
-	private float timeToNextAttack = 0.0f;
 	private const float UNDEAD_ATTACK_TIME = 1.5f;
 	private bool enemyIsKilled = false;
 	private int enemyLifes = -1;
@@ -76,7 +73,7 @@ public class EnemyBehaviour : MonoBehaviour {
             int check = 0;
             
 			if(Vector3.Distance(charPosition,this.transform.position) < 0.5f || ((Vector3.Distance(charPosition,this.transform.position) < 0.9f) && this.tag== "Kerberos")){//vzdalenost k utoku, zastav a zautoc
-				print ("Attack");
+				//print ("Attack");
 				attacking = true;
 				StopMovement();
 				Attack();
@@ -159,14 +156,11 @@ public class EnemyBehaviour : MonoBehaviour {
 			enemyLifes--;
 			if(enemyLifes == 0){ //enemy ma alespon jeden zivot
 				enemyIsKilled = true;
-				//print("Enemy was killed");
 				character.GetComponent<Animator>().SetBool("hit", false);
 				gameManager.CharacterKillEnemy(this.tag);
 				StartCoroutine(EnemyDie());
 			}else{
-				print("enemy hitted");
-				//enemy ma alespon jeden zivot
-				//PREHREJ ANIMACI ZASAHU ENEMY, zatim jen pro wraitha
+				//PREHREJ ANIMACI ZASAHU ENEMY
 				if(this.tag == "EnemyBig" || this.tag == "Kerberos" ){
 					//print("Enemy recieved hit and survive");
 					StartCoroutine(EnemyHit());
@@ -244,11 +238,11 @@ public class EnemyBehaviour : MonoBehaviour {
     {
         if (IsHeroOnDesk)
         {
-            Debug.Log("je na doske");
+            //Debug.Log("je na doske");
         }
         else
         {
-            Debug.Log("nieje na doske");
+            //Debug.Log("nieje na doske");
         }
         
 		if(!enemyIsKilled){

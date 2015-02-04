@@ -40,8 +40,8 @@ public class CameraController : MonoBehaviour {
 
 		character =  GameObject.FindGameObjectWithTag("Character").transform;
 		if (character == null) {
-						print ("Didnt find character ...well fuck");		
-				}
+			print ("Didnt find character ...well fuck");		
+		}
 		//init for camera location
 		velocity = new Vector2(0.5f,0.5f);
         
@@ -62,7 +62,6 @@ public class CameraController : MonoBehaviour {
 		//UPDATES CAMERA TO OUR CHARACTERS LOCATION
 		Vector3 newPos = new Vector3 (newPos2D.x, newPos2D.y, this.transform.position.z);
 		this.transform.position = Vector3.Slerp (transform.position, newPos, Time.time);
-        
 	
 		//solution for in game menu
 		if (Input.GetKeyDown(KeyCode.Escape)){
@@ -70,19 +69,16 @@ public class CameraController : MonoBehaviour {
                 isGamePaused = false;
                 AudioSourcePointer.clip = GameClip;
                 AudioSourcePointer.Play();
-               // AudioSourcePointer.mute = true;
             }
             else{
                 isGamePaused = true;
                 AudioSourcePointer.clip = MenuClip;
-               // AudioSourcePointer.mute = false;
                 AudioSourcePointer.Play();
             }
         }
 	}
 
 	public void setLookTransformCons(float newLookTransformConst){
-		print("Const is goint to be " + newLookTransformConst); 
 		lookTransformConst = newLookTransformConst;
 	}
 
@@ -96,9 +92,7 @@ public class CameraController : MonoBehaviour {
         else
         {
             StillPlaying();
-        }
-        //healthbar-done
-        
+        }       
     }
 
     private void StillPlaying()
@@ -108,12 +102,10 @@ public class CameraController : MonoBehaviour {
         tx2DFlash.Apply(); //Applies all the changes made
         GUI.DrawTexture(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP / 100f), Screen.height * 0.025f), tx2DFlash); //Draws the texture for the entire screen (width, height)
 
-        //GUI.Button(new Rect(Screen.width * 0.11f, Screen.height * 0.13f, Screen.width * 0.221f * (HP/100f), Screen.height * 0.78f), HealthBar, "");
-
-        //healthbarlimits-done
+        //healthbarlimits
         GUI.Button(new Rect(Screen.width * 0.1f, Screen.height * 0.12f, Screen.width * 0.24f, Screen.height * 0.78f), HealthBarLimits, "");
 
-        //helmets-done
+        //helmets
         switch (Lifes)
         {
             case 1:

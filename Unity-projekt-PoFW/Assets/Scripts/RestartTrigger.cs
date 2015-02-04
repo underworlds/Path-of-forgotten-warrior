@@ -26,12 +26,9 @@ public class RestartTrigger : MonoBehaviour {
         
         if (collision.gameObject.tag.Equals("Character")){
 			character = GameObject.FindGameObjectWithTag("Character");
-            //character.GetComponent<AudioForHero>().deathSound();
 			gameManager.killCharacter();
         }
     }
-
-
 
 //-------------------INITIALIZATION CODE-----------------
 
@@ -46,5 +43,4 @@ public class RestartTrigger : MonoBehaviour {
 	void Update () {
 	
 	}
-
 }

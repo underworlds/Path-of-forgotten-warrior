@@ -22,14 +22,8 @@ public class GroundControl : MonoBehaviour {
 				if(obj != null){
                 obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk = true;
 				}
-
-                //Debug.Log(obj.GetComponent<EnemyBehaviour>().IsHeroOnDesk.ToString());
-            }
-            
-            
-        }
-        
-        
+            }           
+        }  
     }
 
 
@@ -45,13 +39,9 @@ public class GroundControl : MonoBehaviour {
                // Debug.Log("move to hero");
 				if(obj != null){
 					obj.GetComponent<EnemyBehaviour>().setHeroPosition(new Vector2(coll.gameObject.rigidbody2D.position.x, coll.gameObject.rigidbody2D.position.y));
-				}
-                
+				} 
             }
-           
         }
-        
-        //Destroy(coll.gameObject);
     }
 
     //zistuje ktore objekty sa uz nedotikaju plosiny
@@ -68,7 +58,6 @@ public class GroundControl : MonoBehaviour {
 				}
                // Debug.Log("hero leaves");
             }
-        }
-       
+        } 
     }
 }
